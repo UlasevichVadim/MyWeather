@@ -1,0 +1,1567 @@
+Index: MyFragment/app/src/main/java/com/example/myfragment/AnotherFragment.kt
+===================================================================
+diff --git a/MyFragment/app/src/main/java/com/example/myfragment/AnotherFragment.kt b/MyFragment/app/src/main/java/com/example/myfragment/AnotherFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyFragment/app/src/main/java/com/example/myfragment/AnotherFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,25 @@
++package com.example.myfragment
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.Button
++
++class AnotherFragment : Fragment(R.layout.fragment_another) {
++    private lateinit var buttonBack: Button
++    private lateinit var buttonNext: Button
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++        buttonBack = view.findViewById(R.id.buttonBack)
++        buttonNext = view.findViewById(R.id.buttonNext)
++
++        buttonNext.setOnClickListener {
++            buttonBack.text = "Yes"
++
++        }
++        buttonBack.setOnClickListener {
++            buttonNext.text = "No"
++        }
++    }
++}
+\ No newline at end of file
+Index: MyFragment/app/src/main/java/com/example/myfragment/MyFragment.kt
+===================================================================
+diff --git a/MyFragment/app/src/main/java/com/example/myfragment/MyFragment.kt b/MyFragment/app/src/main/java/com/example/myfragment/MyFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyFragment/app/src/main/java/com/example/myfragment/MyFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,47 @@
++package com.example.myfragment
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.Button
++import android.widget.TextView
++
++class MyFragment : Fragment() {
++    private lateinit var textView: TextView
++    private var count = 0
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++
++        val rootView = inflater.inflate(R.layout.fragment_my, container, false)
++        textView = rootView.findViewById(R.id.ourScreen)
++        arguments?.getString(ARGUMENT_INFO, "Nothing")?.let {
++            textView.text = it
++        }
++
++        rootView.findViewById<Button>(R.id.buttonAction).setOnClickListener {
++            updateText()
++        }
++        rootView.findViewById<Button>(R.id.buttonClear).setOnClickListener {
++            updateClearText()
++        }
++        return rootView
++    }
++
++    private fun updateClearText() {
++        textView.text = ""
++    }
++
++    private fun updateText() {
++        textView.text = "You entered on button $count times"
++        count++
++    }
++
++    companion object {
++        const val ARGUMENT_INFO = "ARGUMENT INFO"
++    }
++}
+\ No newline at end of file
+Index: MyFragment/app/src/main/res/layout/fragment_another.xml
+===================================================================
+diff --git a/MyFragment/app/src/main/res/layout/fragment_another.xml b/MyFragment/app/src/main/res/layout/fragment_another.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyFragment/app/src/main/res/layout/fragment_another.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="horizontal"
++    tools:context=".MainActivity">
++
++    <Button
++        android:id="@+id/buttonBack"
++        android:layout_width="wrap_content"
++        android:layout_height="100dp"
++        android:gravity="center"
++        android:text="Press to back"
++        android:textStyle="bold" />
++
++    <Button
++        android:id="@+id/buttonNext"
++        android:layout_width="wrap_content"
++        android:layout_height="100dp"
++        android:layout_marginStart="100dp"
++        android:gravity="center"
++        android:text="Press to next"
++        android:textStyle="bold" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: MyFragment/app/src/main/res/layout/fragment_my.xml
+===================================================================
+diff --git a/MyFragment/app/src/main/res/layout/fragment_my.xml b/MyFragment/app/src/main/res/layout/fragment_my.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyFragment/app/src/main/res/layout/fragment_my.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,38 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="horizontal"
++    tools:context=".MainActivity">
++
++    <TextView
++        android:id="@+id/ourScreen"
++        android:layout_width="250dp"
++        android:layout_height="100dp"
++        android:gravity="center"
++        android:text=" "
++        android:textColor="@color/black"
++        android:textSize="36sp"
++        android:textStyle="bold" />
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="vertical">
++
++        <Button
++            android:id="@+id/buttonAction"
++            android:layout_width="120dp"
++            android:layout_height="50dp"
++            android:layout_marginStart="20dp"
++            android:text="Enter" />
++
++        <Button
++            android:id="@+id/buttonClear"
++            android:layout_width="120dp"
++            android:layout_height="50dp"
++            android:layout_marginStart="20dp"
++            android:text="Clear" />
++    </LinearLayout>
++</LinearLayout>
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/DetailsFragment.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/DetailsFragment.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/DetailsFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/DetailsFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,43 @@
++package com.example.mylistandroid
++
++import android.os.Bundle
++import android.view.Menu
++import android.view.MenuInflater
++import android.view.View
++import androidx.appcompat.app.AppCompatActivity
++import androidx.fragment.app.Fragment
++import com.example.mylistandroid.databinding.FragmentDetailsBinding
++
++class DetailsFragment : Fragment(R.layout.fragment_details) {
++
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setHasOptionsMenu(true)
++    }
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++
++        val text = arguments?.getString(ARGUMENT_TEXT) ?: "Unknown"
++        FragmentDetailsBinding.bind(view).apply {
++            textView.text = text
++        }
++        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Подробности"
++    }
++    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
++        inflater.inflate(R.menu.menu_details, menu)
++        super.onCreateOptionsMenu(menu, inflater)
++    }
++    companion object{
++        private const val ARGUMENT_TEXT = "ARGUMENT_TEXT"
++        fun newInstance(text : String): DetailsFragment{
++            val args = Bundle().apply {
++                putString(ARGUMENT_TEXT, text)
++            }
++            
++            val fragment = DetailsFragment()
++            fragment.arguments = args
++            return fragment
++        }
++    }
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/ListController.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListController.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListController.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListController.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,44 @@
++package com.example.mylistandroid
++
++import android.os.Build
++import androidx.annotation.RequiresApi
++
++
++class ListController {
++    private var view: ListView? = null
++
++    @RequiresApi(Build.VERSION_CODES.M)
++    fun onViewReady(view: ListView) {
++        this.view = view
++        view.displayList(UserRepository.users)
++
++        if (!PermissionChecker.hasWriteExternalStoragePermission()) {
++            view.askForWriteExternalStoragePermission()
++        }
++    }
++
++    fun onViewDestroyed() {
++        this.view = null
++    }
++
++    fun onRemoveAllClicked() {
++        UserRepository.removeAll()
++        view?.displayList(UserRepository.users)
++    }
++
++    fun onRemoveLastClicked() {
++        UserRepository.removeLast()
++        view?.displayList(UserRepository.users)
++    }
++
++    fun onEditSecondClicked() {
++        if (UserRepository.users.size < 2) return
++        UserRepository.updateUser(1, User("Second", "Second", "Kiev"))
++        view?.displayList(UserRepository.users)
++    }
++
++    fun onAddRandomClicked() {
++        UserRepository.addRandomUser()
++        view?.displayNewItemInList(UserRepository.users.last())
++    }
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/ListFragment.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListFragment.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,109 @@
++package com.example.mylistandroid
++
++import android.Manifest
++import android.os.Build
++import android.os.Bundle
++import android.view.Menu
++import android.view.MenuInflater
++import android.view.MenuItem
++import androidx.fragment.app.Fragment
++import android.view.View
++import androidx.annotation.RequiresApi
++import androidx.appcompat.app.AppCompatActivity
++import androidx.core.app.ActivityCompat
++import androidx.recyclerview.widget.LinearLayoutManager
++import com.example.mylistandroid.databinding.FragmentListBinding
++
++class ListFragment : Fragment(R.layout.fragment_list),
++    com.example.mylistandroid.ListView {
++    private var _binding: FragmentListBinding? = null
++    private val binding
++        get() = _binding!!
++    private val controller = ListController()
++    private lateinit var adapter: UsersListRecyclerAdapter
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setHasOptionsMenu(true)
++        adapter = UsersListRecyclerAdapter(layoutInflater,
++            object : UsersListRecyclerAdapter.UserClickListener {
++                override fun onUserClicked(user: User) {
++                    navigator().navigateToDetailsScreen(user)
++                }
++            })
++
++    }
++
++    @RequiresApi(Build.VERSION_CODES.M)
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++
++        _binding = FragmentListBinding.bind(view)
++        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
++        binding.apply {
++            addListItemButton.setOnClickListener {
++                controller.onAddRandomClicked()
++            }
++            removeAllItemsButton.setOnClickListener {
++                controller.onRemoveAllClicked()
++            }
++            removeLastItemsButton.setOnClickListener {
++                controller.onRemoveLastClicked()
++            }
++            editSecondItemButton.setOnClickListener {
++                controller.onEditSecondClicked()
++            }
++            recyclerView.adapter = adapter
++            recyclerView.layoutManager = LinearLayoutManager(requireContext())
++        }
++        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Список"
++        controller.onViewReady(this)
++    }
++
++    override fun onDestroyView() {
++        controller.onViewDestroyed()
++        super.onDestroyView()
++        _binding = null
++    }
++
++    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
++        inflater.inflate(R.menu.menu_list, menu)
++        super.onCreateOptionsMenu(menu, inflater)
++    }
++
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.menu_item_list_add_item -> {
++                controller.onAddRandomClicked()
++                return true
++            }
++            R.id.menu_item_list_delete_all -> {
++                controller.onRemoveAllClicked()
++                return true
++            }
++        }
++        return super.onOptionsItemSelected(item)
++
++    }
++
++    override fun displayList(users: List<User>) {
++        adapter.setData(users)
++    }
++
++    override fun displayNewItemInList(user: User) {
++        adapter.addNewUser(user)
++    }
++
++
++    override fun askForWriteExternalStoragePermission() {
++        ActivityCompat.requestPermissions(
++            requireActivity(),
++            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
++            REQUEST_PERMISSION_CODE
++        )
++    }
++
++    companion object {
++        const val REQUEST_PERMISSION_CODE = 2
++    }
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/ListView.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListView.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListView.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/ListView.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,7 @@
++package com.example.mylistandroid
++
++interface ListView {
++    fun displayList(users: List<User>)
++    fun displayNewItemInList(user: User)
++    fun askForWriteExternalStoragePermission()
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/MyApplication.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/MyApplication.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/MyApplication.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/MyApplication.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,15 @@
++package com.example.mylistandroid
++
++import android.app.Application
++
++class MyApplication : Application() {
++
++    override fun onCreate() {
++        super.onCreate()
++        instance = this
++    }
++
++    companion object {
++        lateinit var instance: MyApplication
++    }
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/Navigator.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/Navigator.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/Navigator.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/Navigator.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,9 @@
++package com.example.mylistandroid
++
++import androidx.fragment.app.Fragment
++
++interface Navigator {
++    fun navigateToDetailsScreen(user: User)
++}
++
++fun Fragment.navigator(): Navigator = (requireActivity() as Navigator)
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/PermissionChecker.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/PermissionChecker.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/PermissionChecker.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/PermissionChecker.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,13 @@
++package com.example.mylistandroid
++
++import android.content.pm.PackageManager
++import android.os.Build
++import androidx.annotation.RequiresApi
++
++object PermissionChecker {
++    @RequiresApi(Build.VERSION_CODES.M)
++    fun hasWriteExternalStoragePermission() =
++        MyApplication.instance.checkSelfPermission(
++            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
++        ) == PackageManager.PERMISSION_GRANTED
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/User.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/User.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/User.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/User.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,7 @@
++package com.example.mylistandroid
++
++data class User(
++    val firstName: String,
++    val lastName: String,
++    val address: String
++)
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/UserRepository.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/UserRepository.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/UserRepository.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/UserRepository.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,68 @@
++package com.example.mylistandroid
++
++import com.github.javafaker.Faker
++import java.io.File
++import com.google.gson.GsonBuilder
++
++
++object UserRepository {
++    private var _users = mutableListOf<User>()
++    var users: List<User> = _users
++        private set
++
++    private val gson = GsonBuilder().apply {
++        setPrettyPrinting()
++    }.create()
++
++    private val faker = Faker()
++
++    init {
++        loadList()
++    }
++
++    fun addRandomUser() {
++        _users.add(createRandomUser())
++        saveList()
++    }
++
++    fun removeAll() {
++        _users.clear()
++        saveList()
++    }
++
++    fun removeLast() {
++        if (_users.isEmpty()) return
++        _users.removeAt(_users.lastIndex)
++        saveList()
++    }
++
++    fun updateUser(index: Int, user: User) {
++        _users[index] = user
++        saveList()
++    }
++
++    private fun createRandomUser() = User(
++        faker.name().firstName(),
++        faker.name().lastName(),
++        faker.address().fullAddress()
++    )
++
++    private fun loadList() {
++        val file = File(MyApplication.instance.filesDir, "users.json")
++        if (file.exists()) {
++            file.bufferedReader().use {
++                val userArray = gson.fromJson(it, Array<User>::class.java)
++                _users = userArray.toMutableList()
++                users = _users
++            }
++        }
++    }
++
++    private fun saveList() {
++        val file = File(MyApplication.instance.filesDir, "users.json")
++        file.bufferedWriter().use {
++            gson.toJson(_users, it)
++            users = _users
++        }
++    }
++}
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListAdapter.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListAdapter.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListAdapter.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListAdapter.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,32 @@
++package com.example.mylistandroid
++
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.BaseAdapter
++import com.example.mylistandroid.databinding.ListItemBinding
++
++class UsersListAdapter(
++    private val layoutInflater: LayoutInflater,
++    private val users: List<User>
++) : BaseAdapter() {
++    override fun getCount(): Int = users.size
++
++    override fun getItem(position: Int) = users[position]
++
++    override fun getItemId(position: Int) = position.toLong()
++
++    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
++        val itemView = when (convertView) {
++            null -> layoutInflater.inflate(R.layout.list_item, parent, false)
++            else -> convertView
++        }
++        val item = getItem(position)
++
++        ListItemBinding.bind(itemView).apply {
++            userAddressTextView.text = item.address
++            userFullNameTextView.text = item.firstName + " " + item.lastName
++        }
++        return itemView
++    }
++}
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListRecyclerAdapter.kt
+===================================================================
+diff --git a/MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListRecyclerAdapter.kt b/MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListRecyclerAdapter.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/java/com/example/mylistandroid/UsersListRecyclerAdapter.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,49 @@
++package com.example.mylistandroid
++
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.TextView
++import androidx.recyclerview.widget.RecyclerView
++import com.example.mylistandroid.databinding.ListItemBinding
++
++class UsersListRecyclerAdapter(
++    private val layoutInflater: LayoutInflater,
++    private val clickListener: UserClickListener
++) : RecyclerView.Adapter<UsersListRecyclerAdapter.MyViewHolder>() {
++    private var users: MutableList<User> = mutableListOf()
++
++    fun setData(users: List<User>){
++        this.users = users.toMutableList()
++        notifyDataSetChanged()
++    }
++    fun addNewUser(user: User)    {
++        this.users.add(user)
++        notifyItemInserted(users.size)
++    }
++    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
++        val binding = ListItemBinding.inflate(layoutInflater, parent, false)
++        return MyViewHolder(binding)
++    }
++
++    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
++        val item = users[position]
++
++        holder.binding.apply {
++            userFullNameTextView.text = item.firstName + " " + item.lastName
++            userAddressTextView.text = item.address
++
++        }
++        holder.binding.root.setOnClickListener{
++            clickListener.onUserClicked(item)
++        }
++    }
++
++    override fun getItemCount(): Int = users.size
++    class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
++    }
++    interface UserClickListener {
++        fun onUserClicked(user: User)
++    }
++}
++
+Index: MyListAndroid/app/src/main/res/layout/fragment_details.xml
+===================================================================
+diff --git a/MyListAndroid/app/src/main/res/layout/fragment_details.xml b/MyListAndroid/app/src/main/res/layout/fragment_details.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/res/layout/fragment_details.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".MainActivity">
++
++    <TextView
++        android:id="@+id/textView"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:gravity="center"
++        android:textSize="24sp"
++        tools:text="Example"
++        android:textColor="#000"/>
++</LinearLayout>
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/res/layout/fragment_list.xml
+===================================================================
+diff --git a/MyListAndroid/app/src/main/res/layout/fragment_list.xml b/MyListAndroid/app/src/main/res/layout/fragment_list.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/res/layout/fragment_list.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,56 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".MainActivity"
++    android:background="#FFFFFF">
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Список Fragment"
++        android:textSize="24sp" />
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="100dp">
++
++        <Button
++            android:id="@+id/addListItemButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="add" />
++
++        <Button
++            android:id="@+id/removeAllItemsButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="rem_all" />
++
++        <Button
++            android:id="@+id/removeLastItemsButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="rem_last" />
++
++        <Button
++            android:id="@+id/editSecondItemButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="edit" />
++
++
++    </LinearLayout>
++
++<!--    <ListView-->
++<!--        android:id="@+id/list_view"-->
++<!--        android:layout_width="match_parent"-->
++<!--        android:layout_height="match_parent" />-->
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerView"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"/>
++</LinearLayout>
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/res/layout/list_item.xml
+===================================================================
+diff --git a/MyListAndroid/app/src/main/res/layout/list_item.xml b/MyListAndroid/app/src/main/res/layout/list_item.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/res/layout/list_item.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="vertical"
++    android:padding="16dp">
++
++    <TextView
++        android:id="@+id/userFullNameTextView"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:textColor="@color/black"
++        android:textSize="20sp"
++        tools:text="Имя Фамилия" />
++
++    <TextView
++        android:id="@+id/userAddressTextView"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ellipsize="end"
++        android:maxLines="1"
++        android:textColor="@color/black"
++        android:textSize="16sp"
++        tools:text="г.Минск, пр-т Независимости, д.198." />
++
++</LinearLayout>
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/res/menu/menu_details.xml
+===================================================================
+diff --git a/MyListAndroid/app/src/main/res/menu/menu_details.xml b/MyListAndroid/app/src/main/res/menu/menu_details.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/res/menu/menu_details.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android">
++    <item
++        android:id="@+id/menu_item_details_share_item"
++        android:title="Поделиться" />
++</menu>
+\ No newline at end of file
+Index: MyListAndroid/app/src/main/res/menu/menu_list.xml
+===================================================================
+diff --git a/MyListAndroid/app/src/main/res/menu/menu_list.xml b/MyListAndroid/app/src/main/res/menu/menu_list.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/MyListAndroid/app/src/main/res/menu/menu_list.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android">
++    <item
++        android:id="@+id/menu_item_list_add_item"
++        android:title="Добавить" />
++    <item
++        android:id="@+id/menu_item_list_delete_all"
++        android:title="удалить всё" />
++</menu>
+\ No newline at end of file
+Index: NoteApp/app/src/main/res/drawable/ic_add_24.xml
+===================================================================
+diff --git a/NoteApp/app/src/main/res/drawable/ic_add_24.xml b/NoteApp/app/src/main/res/drawable/ic_add_24.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteApp/app/src/main/res/drawable/ic_add_24.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,10 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24"
++    android:tint="?attr/colorControlNormal">
++  <path
++      android:fillColor="@android:color/white"
++      android:pathData="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
++</vector>
+Index: NoteApp/app/src/main/res/drawable/ic_notes_24.xml
+===================================================================
+diff --git a/NoteApp/app/src/main/res/drawable/ic_notes_24.xml b/NoteApp/app/src/main/res/drawable/ic_notes_24.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteApp/app/src/main/res/drawable/ic_notes_24.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,5 @@
++<vector android:height="24dp" android:tint="#B01212"
++    android:viewportHeight="24" android:viewportWidth="24"
++    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M3,18h12v-2L3,16v2zM3,6v2h18L21,6L3,6zM3,13h18v-2L3,11v2z"/>
++</vector>
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/MainView.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/MainView.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/MainView.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/MainView.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,7 @@
++package com.example.noteappfromnull
++
++import com.example.noteappfromnull.data.Note
++
++interface MainView {
++    fun displayList(notes: List<Note>)
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/adapters/NotesListAdapter.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/adapters/NotesListAdapter.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/adapters/NotesListAdapter.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/adapters/NotesListAdapter.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,40 @@
++package com.example.noteappfromnull.adapters
++
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.BaseAdapter
++import android.widget.TextView
++import com.example.noteappfromnull.R
++import com.example.noteappfromnull.data.Note
++
++class NotesListAdapter(
++    private val layoutInflater: LayoutInflater,
++    private val notes: List<Note>
++) : BaseAdapter() {
++
++    override fun getCount() = notes.size
++
++    override fun getItem(position: Int) = notes[position]
++
++    override fun getItemId(position: Int) = position.toLong()
++
++    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
++        val itemView = when (convertView) {
++            null -> layoutInflater.inflate(R.layout.notes_location, parent, false)
++            else -> convertView
++        }
++
++        val item = getItem(position)
++
++        val id = itemView.findViewById<TextView>(R.id.idNote)
++        val titleNote = itemView.findViewById<TextView>(R.id.titleNote)
++        val textNote = itemView.findViewById<TextView>(R.id.bodyNote)
++
++        id.text = item.noteId.toString()
++        titleNote.text = item.title
++        textNote.text = item.text
++
++        return itemView
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/AddNoteFragment.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/AddNoteFragment.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/AddNoteFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/AddNoteFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++package com.example.noteappfromnull.appFragments
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.TextView
++import com.example.noteappfromnull.R
++
++class AddNoteFragment : Fragment(R.layout.fragment_add_note) {
++
++    private lateinit var textView: TextView
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/EditNoteFragment.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/EditNoteFragment.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/EditNoteFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/EditNoteFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++package com.example.noteappfromnull.appFragments
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.TextView
++import com.example.noteappfromnull.R
++
++class EditNoteFragment : Fragment(R.layout.fragment_ed_note) {
++
++    private lateinit var textView: TextView
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/InfoAboutAppFragment.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/InfoAboutAppFragment.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/InfoAboutAppFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/InfoAboutAppFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,15 @@
++package com.example.noteappfromnull.appFragments
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.TextView
++import com.example.noteappfromnull.R
++
++class InfoAboutAppFragment : Fragment(R.layout.fragment_info_about_app) {
++    private lateinit var textView: TextView
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ListNotesFragment.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ListNotesFragment.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ListNotesFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ListNotesFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,58 @@
++package com.example.noteappfromnull.appFragments
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.LinearLayout
++import android.widget.ListView
++import android.widget.TextView
++import com.example.noteappfromnull.сontroller.MainController
++import com.example.noteappfromnull.data.Note
++import com.example.noteappfromnull.MainView
++import com.example.noteappfromnull.R
++import com.example.noteappfromnull.adapters.NotesListAdapter
++import com.example.noteappfromnull.databinding.FragmentNotesListBinding
++
++
++class ListNotesFragment : Fragment(R.layout.fragment_notes_list), MainView {
++    private val controller = MainController()
++    private lateinit var listView: ListView
++    private var _binding: FragmentNotesListBinding? = null
++    private val binding: FragmentNotesListBinding
++        get() = _binding!!
++
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++        _binding = FragmentNotesListBinding.bind(view)
++        listView = binding.listViewContainer
++        controller.onViewReady(this)
++        binding.addButton.setOnClickListener {
++            controller.onAddRandomClicked()
++        }
++    }
++
++    override fun displayList(notes: List<Note>) {
++        val newAdapter = NotesListAdapter(layoutInflater, notes)
++        listView.adapter = newAdapter
++    }
++
++    override fun onDestroyView() {
++        super.onDestroyView()
++        _binding = null
++    }
++
++    private fun createItemView(listContainer: LinearLayout): View {
++        return layoutInflater.inflate(R.layout.notes_location, listContainer, false)
++    }
++
++    private fun fillItemView(itemView: View, noteId: Int, title: String, text: String) {
++        val id = itemView.findViewById<TextView>(R.id.idNote)
++        val titleNote = itemView.findViewById<TextView>(R.id.titleNote)
++        val textNote = itemView.findViewById<TextView>(R.id.bodyNote)
++
++        id.text = noteId.toString()
++        titleNote.text = title
++        textNote.text = text
++    }
++}
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ReviewNoteFragment.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ReviewNoteFragment.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ReviewNoteFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ReviewNoteFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++package com.example.noteappfromnull.appFragments
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.TextView
++import com.example.noteappfromnull.R
++
++class ReviewNoteFragment : Fragment(R.layout.fragment_note_review) {
++
++    private lateinit var textView: TextView
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ScreenSettingsFragment.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ScreenSettingsFragment.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ScreenSettingsFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/appFragments/ScreenSettingsFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,15 @@
++package com.example.noteappfromnull.appFragments
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.TextView
++import com.example.noteappfromnull.R
++
++class ScreenSettingsFragment : Fragment(R.layout.fragment_screen_settings) {
++    private lateinit var textView: TextView
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/data/Note.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/data/Note.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/data/Note.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/data/Note.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,8 @@
++package com.example.noteappfromnull.data
++
++data class Note(
++    val noteId: Int,
++    val title: String,
++    val text: String
++) {
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/repository/NoteRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/repository/NoteRepository.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/repository/NoteRepository.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/repository/NoteRepository.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,22 @@
++package com.example.noteappfromnull.repository
++
++import com.example.noteappfromnull.data.Note
++import com.github.javafaker.Faker
++
++object NoteRepository {
++    private val _notes = mutableListOf<Note>()
++    val notes: List<Note>
++        get() = _notes!!
++    private val faker = Faker()
++    private var count = 0
++
++    fun addRandomNote() {
++        _notes.add(createRandomNote())
++    }
++
++    private fun createRandomNote() = Note(
++        count++,
++        faker.name().title(),
++        faker.name().title()
++    )
++}
+Index: NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/сontroller/MainController.kt
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/сontroller/MainController.kt b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/сontroller/MainController.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/java/com/example/noteappfromnull/сontroller/MainController.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,17 @@
++package com.example.noteappfromnull.сontroller
++
++import com.example.noteappfromnull.MainView
++import com.example.noteappfromnull.repository.NoteRepository
++
++class MainController {
++    private lateinit var view: MainView
++
++    fun onViewReady(view: MainView){
++        this.view = view
++    }
++
++    fun onAddRandomClicked(){
++        NoteRepository.addRandomNote()
++        view.displayList(NoteRepository.notes)
++    }
++}
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/fragment_add_note.xml
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/fragment_add_note.xml b/NoteAppFromNull/app/src/main/res/layout/fragment_add_note.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/fragment_add_note.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".appFragments.AddNoteFragment">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="Создание заметки"
++        android:textColor="@color/black"
++        android:textSize="36sp" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/fragment_ed_note.xml
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/fragment_ed_note.xml b/NoteAppFromNull/app/src/main/res/layout/fragment_ed_note.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/fragment_ed_note.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".appFragments.EditNoteFragment">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="Редактирование заметки"
++        android:textColor="@color/black"
++        android:textSize="36sp" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/fragment_info_about_app.xml
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/fragment_info_about_app.xml b/NoteAppFromNull/app/src/main/res/layout/fragment_info_about_app.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/fragment_info_about_app.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".appFragments.InfoAboutAppFragment">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="О приложении"
++        android:textColor="@color/black"
++        android:textSize="36sp" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/fragment_note_review.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/fragment_note_review.xml b/NoteAppFromNull/app/src/main/res/layout/fragment_note_review.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/fragment_note_review.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".appFragments.ReviewNoteFragment">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="Просмотр заметки"
++        android:textColor="@color/black"
++        android:textSize="36sp" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/fragment_notes_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/fragment_notes_list.xml b/NoteAppFromNull/app/src/main/res/layout/fragment_notes_list.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/fragment_notes_list.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context=".appFragments.ListNotesFragment">
++
++    <Button
++        android:id="@+id/addButton"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Add">
++
++    </Button>
++
++    <ListView
++        android:id="@+id/listViewContainer"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_margin="15dp"
++        android:orientation="vertical">
++
++    </ListView>
++
++</LinearLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/fragment_screen_settings.xml
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/fragment_screen_settings.xml b/NoteAppFromNull/app/src/main/res/layout/fragment_screen_settings.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/fragment_screen_settings.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".appFragments.ScreenSettingsFragment">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="Экран настроек"
++        android:textColor="@color/black"
++        android:textSize="36sp" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/note_element_list.xml
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/note_element_list.xml b/NoteAppFromNull/app/src/main/res/layout/note_element_list.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/note_element_list.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        tools:text="Title">
++
++    </TextView>
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        tools:text="Body">
++
++    </TextView>
++
++</LinearLayout>
+\ No newline at end of file
+Index: NoteAppFromNull/app/src/main/res/layout/notes_location.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/NoteAppFromNull/app/src/main/res/layout/notes_location.xml b/NoteAppFromNull/app/src/main/res/layout/notes_location.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/NoteAppFromNull/app/src/main/res/layout/notes_location.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="vertical">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/idNote"
++            android:layout_width="50dp"
++            android:layout_height="100dp"
++            android:gravity="center"
++            android:text="IdItem"
++            android:textColor="#000" />
++
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="100dp"
++            android:orientation="vertical">
++
++            <TextView
++                android:id="@+id/titleNote"
++                android:layout_width="match_parent"
++                android:layout_height="50dp"
++                android:gravity="center"
++                android:text="Title"
++                android:textColor="#000" />
++
++            <TextView
++                android:id="@+id/bodyNote"
++                android:layout_width="match_parent"
++                android:layout_height="50dp"
++                android:gravity="center"
++                android:text="Body"
++                android:textColor="#000" />
++
++        </LinearLayout>
++
++    </LinearLayout>
++
++</LinearLayout>
+\ No newline at end of file
+Index: lesson21/app/src/main/java/com/example/lesson21/CounterFragment.kt
+===================================================================
+diff --git a/lesson21/app/src/main/java/com/example/lesson21/CounterFragment.kt b/lesson21/app/src/main/java/com/example/lesson21/CounterFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/lesson21/app/src/main/java/com/example/lesson21/CounterFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,55 @@
++package com.example.lesson21
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.Button
++import android.widget.TextView
++
++
++class CounterFragment : Fragment() {
++
++    private lateinit var textView: TextView
++
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++
++        val rootView = inflater.inflate(R.layout.fragment_counter, container, false)
++
++
++        textView = rootView.findViewById(R.id.tvValue)
++
++        arguments?.getInt(ARGUMENT_INITIAL_VALUE)?.let {
++            setCounterValue(it)
++        }
++
++        rootView.findViewById<Button>(R.id.buttonPlus).setOnClickListener {
++            updateCounter(1)
++        }
++
++        rootView.findViewById<Button>(R.id.buttonMinus).setOnClickListener {
++            updateCounter(-1)
++        }
++
++        return rootView
++    }
++
++    private fun updateCounter(diff: Int) {
++        val value = textView.text.toString().toInt()
++        setCounterValue(value + diff)
++    }
++
++    private fun setCounterValue(value: Int){
++        (requireActivity() as MainActivity).onCounterUpdated(value)
++        textView.text = value.toString()
++    }
++
++    companion object {
++        const val ARGUMENT_INITIAL_VALUE = "ARGUMENT_INITIAL_VALUE"
++    }
++}
+\ No newline at end of file
+Index: lesson21/app/src/main/java/com/example/lesson21/InfoFragment.kt
+===================================================================
+diff --git a/lesson21/app/src/main/java/com/example/lesson21/InfoFragment.kt b/lesson21/app/src/main/java/com/example/lesson21/InfoFragment.kt
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/lesson21/app/src/main/java/com/example/lesson21/InfoFragment.kt	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,28 @@
++package com.example.lesson21
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.View
++import android.widget.TextView
++
++
++class InfoFragment : Fragment(R.layout.fragment_info) {
++
++    private var textView: TextView? = null
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++
++        textView = view.findViewById(R.id.tvValue)
++        arguments?.getString(ARGUMENT_TEXT)?.let {
++            textView?.text = it
++        }
++    }
++
++    fun setText(text: String) {
++        textView?.text = text
++    }
++    companion object {
++        const val ARGUMENT_TEXT = "ARGUMENT_TEXT"
++    }
++}
+\ No newline at end of file
+Index: lesson21/app/src/main/res/layout/fragment_counter.xml
+===================================================================
+diff --git a/lesson21/app/src/main/res/layout/fragment_counter.xml b/lesson21/app/src/main/res/layout/fragment_counter.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/lesson21/app/src/main/res/layout/fragment_counter.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <Button
++        android:id="@+id/buttonPlus"
++        android:layout_width="50dp"
++        android:layout_height="wrap_content"
++        android:text="+"
++        android:textSize="24sp" />
++
++    <TextView
++        android:id="@+id/tvValue"
++        android:layout_width="100dp"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text=" "
++        android:textSize="24sp" />
++
++    <Button
++        android:id="@+id/buttonMinus"
++        android:layout_width="50dp"
++        android:layout_height="wrap_content"
++        android:text="-"
++        android:textSize="24sp" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: lesson21/app/src/main/res/layout/fragment_info.xml
+===================================================================
+diff --git a/lesson21/app/src/main/res/layout/fragment_info.xml b/lesson21/app/src/main/res/layout/fragment_info.xml
+new file mode 100644
+--- /dev/null	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
++++ b/lesson21/app/src/main/res/layout/fragment_info.xml	(revision 1f2020c961a277e09977c7e47f0c7df3e73d2583)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <TextView
++        android:id="@+id/tvValue"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text=" "
++        android:textSize="24sp" />
++
++
++</LinearLayout>
+\ No newline at end of file

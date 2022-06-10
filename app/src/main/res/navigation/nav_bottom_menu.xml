@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bottom_menu"
+    app:startDestination="@id/item_menu_bottom_home">
+
+    <fragment
+        android:id="@+id/item_menu_bottom_home"
+        android:name="com.vadimulasevich.yourweather.ui.screen.main.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" />
+    <fragment
+        android:id="@+id/item_menu_bottom_search"
+        android:name="com.vadimulasevich.yourweather.ui.screen.search.SearchScreenFragment"
+        android:label="fragment_search_screen"
+        tools:layout="@layout/fragment_search_screen" />
+    <fragment
+        android:id="@+id/item_menu_bottom_about_app"
+        android:name="com.vadimulasevich.yourweather.ui.screen.aboutapp.AboutAppScreenFragment"
+        android:label="fragment_about_app_screen"
+        tools:layout="@layout/fragment_about_app_screen" />
+    <fragment
+        android:id="@+id/item_menu_bottom_settings"
+        android:name="com.vadimulasevich.yourweather.ui.screen.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
