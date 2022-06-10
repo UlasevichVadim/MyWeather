@@ -29,6 +29,5 @@ class MainActivity : AppCompatActivity() {
             menuBottomMain.setupWithNavController(navController)
             menuBottomMain.itemIconTintList = null
         }
-
     }
 }
