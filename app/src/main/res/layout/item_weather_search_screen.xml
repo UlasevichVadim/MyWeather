@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="@dimen/distance_16dp">
+    android:layout_height="@dimen/distance_100dp"
+    android:layout_marginStart="@dimen/distance_5dp"
+    android:layout_marginTop="@dimen/distance_5dp"
+    android:layout_marginEnd="@dimen/distance_5dp"
+    android:layout_marginBottom="@dimen/distance_5dp"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:padding="@dimen/distance_16dp"
+    app:cardBackgroundColor="@color/color_item_weather_list_cardView"
+    app:cardCornerRadius="@dimen/distance_10dp">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/itemWeatherNamePlace"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/distance_50dp"
+            app:layout_constraintBottom_toBottomOf="@id/itemWeatherTempretureAndDescription"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_24sp"
             tools:text="Name Place" />
@@ -23,13 +31,14 @@
         <TextView
             android:id="@+id/itemWeatherTempretureAndDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/distance_50dp"
+            app:layout_constraintTop_toBottomOf="@id/itemWeatherNamePlace"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_18sp"
             tools:text="24 °C , Partly cloudy" />
-    </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

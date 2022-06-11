@@ -9,8 +9,6 @@ import com.vadimulasevich.yourweather.databinding.ItemWeatherSearchScreenBinding
 import com.vadimulasevich.yourweather.db.models.Weather
 
 
-///Пока, что будет Weather как шаблон модели!!!!!
-
 class WeatherListRecyclerDiffAdapter(
     private val layoutInflater: LayoutInflater,
     private val clickListener: WeatherClickListener,
@@ -32,7 +30,8 @@ class WeatherListRecyclerDiffAdapter(
         val item = getItem(position)
 
         holder.binding.apply {
-
+            itemWeatherNamePlace.text = item.address
+            itemWeatherTempretureAndDescription.text = "${item.tempreture} °C, ${item.description}"
         }
     }
 

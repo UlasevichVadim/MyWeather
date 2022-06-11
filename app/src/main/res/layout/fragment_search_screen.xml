@@ -29,8 +29,24 @@
         android:textSize="@dimen/text_size_18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewListLocalWeather"
         android:layout_marginTop="@dimen/distance_30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarSearchScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/showMessageOnSearchScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/all_screen_background.xml" value="0.1785" />
+        <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/cardView_item_weather_search_screen_background.xml" value="0.1785" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/ic__menu_top_settings.xml" value="0.1745" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/ic_menu_bottom_main.xml" value="0.1745" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/ic_menu_bottom_search.xml" value="0.1745" />
@@ -10,6 +12,7 @@
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/main_bg.xml" value="0.1745" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout-land/fragment_main_screen.xml" value="0.21164021164021163" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout-land/fragment_main_screen_land.xml" value="0.21164021164021163" />
+        <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout-v31/item_weather_search_screen.xml" value="0.2318840579710145" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout/fragment_about_app.xml" value="0.22327898550724637" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout/fragment_about_app_screen.xml" value="0.22327898550724637" />

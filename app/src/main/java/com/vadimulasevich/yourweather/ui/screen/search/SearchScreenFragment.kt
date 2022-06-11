@@ -1,13 +1,18 @@
 package com.vadimulasevich.yourweather.ui.screen.search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vadimulasevich.yourweather.R
+import com.vadimulasevich.yourweather.ResultState
 import com.vadimulasevich.yourweather.databinding.FragmentSearchScreenBinding
 import com.vadimulasevich.yourweather.db.models.Weather
+import com.vadimulasevich.yourweather.network.WeatherApi
+import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
 
 
 class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
@@ -25,6 +30,7 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
         val factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SearchScreenViewModel(
+                    WeatherNetworkRepository(WeatherApi.create())
                 ) as T
             }
         }
@@ -34,17 +40,46 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         adapter = WeatherListRecyclerDiffAdapter(layoutInflater,
             object : WeatherListRecyclerDiffAdapter.WeatherClickListener {
                 override fun onUserClicked(weather: Weather) {
+                    viewModel.onUserClicked(weather)
                 }
             })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSearchScreenBinding.bind(view)
         initViewModel()
+
+        _binding = FragmentSearchScreenBinding.bind(view).apply {
+            recyclerViewListLocalWeather.adapter = adapter
+            recyclerViewListLocalWeather.layoutManager = LinearLayoutManager(requireContext())
+        }
+
+
+
+        viewModel.localWeatherList.observe(viewLifecycleOwner) {
+            when (it) {
+                is ResultState.Error -> {
+                    binding.progressBarSearchScreen.visibility = View.VISIBLE
+                    binding.recyclerViewListLocalWeather.visibility = View.GONE
+                    binding.showMessageOnSearchScreen.text = "Error: " + it.throwable.message
+                    Log.e("SearchScreenFragment", it.throwable.stackTraceToString())
+                }
+                is ResultState.Loading -> {
+                    binding.progressBarSearchScreen.visibility = View.VISIBLE
+                    binding.recyclerViewListLocalWeather.visibility = View.GONE
+                    binding.showMessageOnSearchScreen.text = "Loading..."
+                }
+                is ResultState.Success -> {
+                    binding.progressBarSearchScreen.visibility = View.GONE
+                    binding.recyclerViewListLocalWeather.visibility = View.VISIBLE
+                    adapter.setData(it.data)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
