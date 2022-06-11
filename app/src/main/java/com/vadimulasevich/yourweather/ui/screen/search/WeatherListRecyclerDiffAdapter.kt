@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vadimulasevich.yourweather.databinding.ItemWeatherSearchScreenBinding
-import com.vadimulasevich.yourweather.models.Weather
+import com.vadimulasevich.yourweather.db.models.Weather
 
 
 ///Пока, что будет Weather как шаблон модели!!!!!
@@ -36,7 +36,8 @@ class WeatherListRecyclerDiffAdapter(
         }
     }
 
-    inner class MyViewHolder(val binding: ItemWeatherSearchScreenBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding: ItemWeatherSearchScreenBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
@@ -52,14 +53,15 @@ class WeatherListRecyclerDiffAdapter(
     }
 
     companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<Weather> = object : DiffUtil.ItemCallback<Weather>() {
-            override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
-                return oldItem.id == newItem.id
-            }
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<Weather> =
+            object : DiffUtil.ItemCallback<Weather>() {
+                override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
+                    return oldItem.id == newItem.id
+                }
 
-            override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
-                return oldItem == newItem
+                override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
+                    return oldItem == newItem
+                }
             }
-        }
     }
 }

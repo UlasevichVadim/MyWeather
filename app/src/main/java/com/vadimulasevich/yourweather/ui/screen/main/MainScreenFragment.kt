@@ -42,7 +42,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
             var response: String?
             try {
                 response =
-                    URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API_KEY&lang=ru")
+                    URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API_KEY")
                         .readText(Charsets.UTF_8)
             } catch (e: Exception) {
                 response = null

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 android {
     compileSdk 32
@@ -43,7 +44,16 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
 
+    //Зависимости для ViewModel
+    def lifecycle_version = "2.5.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
+
+    //Зависимости для Room
+    def roomVersion = '2.3.0'
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
 
 

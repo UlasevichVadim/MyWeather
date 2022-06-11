@@ -8,6 +8,8 @@
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/ic_menu_bottom_search.xml" value="0.1745" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/ic_menu_top_info.xml" value="0.1745" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/drawable/main_bg.xml" value="0.1745" />
+        <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout-land/fragment_main_screen.xml" value="0.21164021164021163" />
+        <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout-land/fragment_main_screen_land.xml" value="0.21164021164021163" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout/fragment_about_app.xml" value="0.22327898550724637" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/layout/fragment_about_app_screen.xml" value="0.22327898550724637" />
@@ -19,6 +21,7 @@
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/menu/main_screen_bottom_menu.xml" value="0.2453125" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/menu/main_screen_menu.xml" value="0.24635416666666668" />
         <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/menu/main_screen_top_menu.xml" value="0.24635416666666668" />
+        <entry key="..\:/AndroidProjects/YourWeather/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1785" />
       </map>
     </option>
   </component>
