@@ -1,10 +1,10 @@
 package com.vadimulasevich.yourweather.network.modelsNetwork
 
-data class WeatherApiResponse(
+data class ReqresWeatherApiResponse(
     val dt: Int,
     val main: MainNetwork,
     val name: String,
     val sys: SysNetwork,
-    val weather: List<WeatherNetwork>,
+    val weather: List<ReqresWeather>,
     val wind: WindNetwork
 )

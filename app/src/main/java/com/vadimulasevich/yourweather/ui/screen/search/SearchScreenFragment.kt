@@ -11,6 +11,7 @@ import com.vadimulasevich.yourweather.R
 import com.vadimulasevich.yourweather.ResultState
 import com.vadimulasevich.yourweather.databinding.FragmentSearchScreenBinding
 import com.vadimulasevich.yourweather.db.models.Weather
+import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
 import com.vadimulasevich.yourweather.network.WeatherApi
 import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
 
@@ -30,7 +31,8 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
         val factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SearchScreenViewModel(
-                    WeatherNetworkRepository(WeatherApi.create())
+                    WeatherNetworkRepository(WeatherApi.create()),
+                    ReqresWeatherApiToWeatherMapper()
                 ) as T
             }
         }
@@ -54,28 +56,28 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
         initViewModel()
 
         _binding = FragmentSearchScreenBinding.bind(view).apply {
-            recyclerViewListLocalWeather.adapter = adapter
-            recyclerViewListLocalWeather.layoutManager = LinearLayoutManager(requireContext())
+            recyclerViewListLocalWeatherWeek.adapter = adapter
+            recyclerViewListLocalWeatherWeek.layoutManager = LinearLayoutManager(requireContext())
         }
 
 
 
-        viewModel.localWeatherList.observe(viewLifecycleOwner) {
+        viewModel.localWeatherWeekList.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultState.Error -> {
                     binding.progressBarSearchScreen.visibility = View.VISIBLE
-                    binding.recyclerViewListLocalWeather.visibility = View.GONE
-                    binding.showMessageOnSearchScreen.text = "Error: " + it.throwable.message
+                    binding.recyclerViewListLocalWeatherWeek.visibility = View.GONE
+                    binding.showMessageErrorOnSearchScreen.text = "Error: " + it.throwable.message
                     Log.e("SearchScreenFragment", it.throwable.stackTraceToString())
                 }
                 is ResultState.Loading -> {
                     binding.progressBarSearchScreen.visibility = View.VISIBLE
-                    binding.recyclerViewListLocalWeather.visibility = View.GONE
-                    binding.showMessageOnSearchScreen.text = "Loading..."
+                    binding.recyclerViewListLocalWeatherWeek.visibility = View.GONE
+                    binding.showMessageErrorOnSearchScreen.text = "Loading..."
                 }
                 is ResultState.Success -> {
                     binding.progressBarSearchScreen.visibility = View.GONE
-                    binding.recyclerViewListLocalWeather.visibility = View.VISIBLE
+                    binding.recyclerViewListLocalWeatherWeek.visibility = View.VISIBLE
                     adapter.setData(it.data)
                 }
             }

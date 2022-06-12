@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vadimulasevich.yourweather.ResultState
 import com.vadimulasevich.yourweather.db.models.Weather
-import com.vadimulasevich.yourweather.network.modelsNetwork.WeatherApiResponse
+import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
+import com.vadimulasevich.yourweather.network.modelsNetwork.ReqresWeatherApiResponse
 import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,37 +14,38 @@ import retrofit2.Response
 
 class SearchScreenViewModel(
     private val weatherNetworkRepository: WeatherNetworkRepository,
+    private val weatherMapper: ReqresWeatherApiToWeatherMapper
 ) : ViewModel() {
 
-    private val _localWeatherList = MutableLiveData<ResultState<List<Weather>>>()
-    val localWeatherList: LiveData<ResultState<List<Weather>>> = _localWeatherList
+    private val _localWeatherWeekList = MutableLiveData<ResultState<List<Weather>>>()
+    val localWeatherWeekList: LiveData<ResultState<List<Weather>>> = _localWeatherWeekList
 
 
     init {
-       loadWeather()
+        loadWeatherWeek()
     }
 
-    private fun loadWeather() {
-        _localWeatherList.value = ResultState.Loading()
-        weatherNetworkRepository.getWeather(object : Callback<WeatherApiResponse> {
-            override fun onResponse(call: Call<WeatherApiResponse>, response: Response<WeatherApiResponse>) {
-                 val result = response.body()?.let{ responseBody ->
-                     val weatherList = responseBody.weather.map {
-                         Weather(
-                             id = it.id,
-                             tempreture = it.main,
-                             description = it.description,
-                             address = it.icon
-                         )
-                     }
-                     ResultState.Success(weatherList)
-                 } ?: ResultState.Error(RuntimeException("Response body is null"))
+    private fun loadWeatherWeek() {
+        _localWeatherWeekList.value = ResultState.Loading()
+        weatherNetworkRepository.getWeatherAllNextWeek(object : Callback<ReqresWeatherApiResponse> {
+            override fun onResponse(
+                call: Call<ReqresWeatherApiResponse>,
+                response: Response<ReqresWeatherApiResponse>,
+            ) {
+                val responseBody = response.body()
 
-                _localWeatherList.value = result
+                if (responseBody == null) {
+                    _localWeatherWeekList.value =
+                        ResultState.Error(RuntimeException("Response body is null"))
+                    return
+                }
+
+                val weatherList = weatherMapper.toWeatherList(responseBody)
+                _localWeatherWeekList.value = ResultState.Success(weatherList)
             }
 
-            override fun onFailure(call: Call<WeatherApiResponse>, t: Throwable) {
-                _localWeatherList.value = ResultState.Error(t)
+            override fun onFailure(call: Call<ReqresWeatherApiResponse>, t: Throwable) {
+                _localWeatherWeekList.value = ResultState.Error(t)
             }
 
         })

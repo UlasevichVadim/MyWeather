@@ -59,7 +59,7 @@ class WeatherListRecyclerDiffAdapter(
                 }
 
                 override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
-                    return oldItem == newItem
+                    return oldItem != newItem
                 }
             }
     }

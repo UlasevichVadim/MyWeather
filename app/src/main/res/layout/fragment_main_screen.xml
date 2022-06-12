@@ -412,18 +412,18 @@
     </RelativeLayout>
 
     <ProgressBar
-        android:id="@+id/loader"
+        android:id="@+id/progressBarMainScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/errorText"
+        android:id="@+id/showMessageErrorOnMainScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Something went wrong"
+        tools:text="Something went wrong"
         android:textColor="@color/white"
         android:visibility="gone" />
 </RelativeLayout>
