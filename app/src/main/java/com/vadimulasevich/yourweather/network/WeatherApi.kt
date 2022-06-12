@@ -2,7 +2,7 @@ package com.vadimulasevich.yourweather.network
 
 import com.vadimulasevich.yourweather.API_KEY
 import com.vadimulasevich.yourweather.CITY
-import com.vadimulasevich.yourweather.network.models.WeatherApiResponse
+import com.vadimulasevich.yourweather.network.modelsNetwork.WeatherApiResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

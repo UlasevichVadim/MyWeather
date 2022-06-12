@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vadimulasevich.yourweather.ResultState
 import com.vadimulasevich.yourweather.db.models.Weather
-import com.vadimulasevich.yourweather.network.models.WeatherApiResponse
+import com.vadimulasevich.yourweather.network.modelsNetwork.WeatherApiResponse
 import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
 import retrofit2.Call
 import retrofit2.Callback

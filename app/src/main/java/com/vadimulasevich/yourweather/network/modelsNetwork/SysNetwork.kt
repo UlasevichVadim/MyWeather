@@ -1,6 +1,6 @@
-package com.vadimulasevich.yourweather.network.models
+package com.vadimulasevich.yourweather.network.modelsNetwork
 
-data class Sys(
+data class SysNetwork(
     val country: String,
     val id: Int,
     val sunrise: Int,

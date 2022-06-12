@@ -1,6 +1,6 @@
-package com.vadimulasevich.yourweather.network.models
+package com.vadimulasevich.yourweather.network.modelsNetwork
 
-data class Main(
+data class MainNetwork(
     val feels_like: Double,
     val grnd_level: Int,
     val humidity: Int,

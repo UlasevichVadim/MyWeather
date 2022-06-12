@@ -1,4 +1,4 @@
-package com.vadimulasevich.yourweather.network.models
+package com.vadimulasevich.yourweather.network.modelsNetwork
 
 data class WeatherNetwork(
     val description: String,
