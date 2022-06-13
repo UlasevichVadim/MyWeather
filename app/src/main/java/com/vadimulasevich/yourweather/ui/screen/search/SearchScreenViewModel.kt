@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.vadimulasevich.yourweather.ResultState
 import com.vadimulasevich.yourweather.db.models.Weather
 import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
-import com.vadimulasevich.yourweather.network.modelsNetwork.ReqresWeatherApiResponse
+import com.vadimulasevich.yourweather.network.modelsNetworkMainScreen.ReqresWeatherApiResponse
 import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,6 +39,7 @@ class SearchScreenViewModel(
                         ResultState.Error(RuntimeException("Response body is null"))
                     return
                 }
+
 
                 val weatherList = weatherMapper.toWeatherList(responseBody)
                 _localWeatherWeekList.value = ResultState.Success(weatherList)

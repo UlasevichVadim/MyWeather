@@ -37,26 +37,28 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainScreenBinding.bind(view)
+        Log.d("Main", "onViewCreated")
 
         initViewModel()
+        Log.d("Main", "initViewModel onViewCreated")
 
         viewModel.localWeatherList.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultState.Error -> {
-
+                    Log.d("Main", "Error onViewCreated")
                     binding.progressBarMainScreen.visibility = View.VISIBLE
                     binding.mainContainer.visibility = View.GONE
                     binding.showMessageErrorOnMainScreen.text = "Error: " + it.throwable.message
                     Log.e("SearchScreenFragment", it.throwable.stackTraceToString())
                 }
                 is ResultState.Loading -> {
-
+                    Log.d("Main>", "Loading onViewCreated")
                     binding.progressBarMainScreen.visibility = View.VISIBLE
                     binding.mainContainer.visibility = View.GONE
                     binding.showMessageErrorOnMainScreen.text = "Loading..."
                 }
                 is ResultState.Success -> {
-
+                    Log.d("Main", "Loading onViewCreated")
                     binding.progressBarMainScreen.visibility = View.GONE
                     binding.showMessageErrorOnMainScreen.visibility = View.GONE
                     binding.mainContainer.visibility = View.VISIBLE

@@ -1,4 +1,4 @@
-package com.vadimulasevich.yourweather.network.modelsNetwork
+package com.vadimulasevich.yourweather.network.modelsNetworkMainScreen
 
 data class MainNetwork(
     val feels_like: Double,

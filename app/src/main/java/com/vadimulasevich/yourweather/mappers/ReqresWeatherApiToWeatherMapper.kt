@@ -1,8 +1,8 @@
 package com.vadimulasevich.yourweather.mappers
 
 import com.vadimulasevich.yourweather.db.models.Weather
-import com.vadimulasevich.yourweather.network.modelsNetwork.ReqresWeather
-import com.vadimulasevich.yourweather.network.modelsNetwork.ReqresWeatherApiResponse
+import com.vadimulasevich.yourweather.network.modelsNetworkMainScreen.ReqresWeather
+import com.vadimulasevich.yourweather.network.modelsNetworkMainScreen.ReqresWeatherApiResponse
 
 class ReqresWeatherApiToWeatherMapper {
 
