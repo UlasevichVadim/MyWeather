@@ -1,4 +1,4 @@
-package com.vadimulasevich.yourweather
+package com.vadimulasevich.yourweather.utils
 
 import android.Manifest
 import android.content.Context

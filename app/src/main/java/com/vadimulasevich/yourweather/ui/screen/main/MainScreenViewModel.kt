@@ -4,17 +4,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vadimulasevich.yourweather.ResultState
+import com.vadimulasevich.yourweather.utils.ResultState
 import com.vadimulasevich.yourweather.db.models.Weather
 import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
 import com.vadimulasevich.yourweather.network.modelsNetworkMainScreen.ReqresWeatherApiResponse
 import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
+import com.vadimulasevich.yourweather.repository.WeatherRepositoryDb
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainScreenViewModel(
     private val weatherNetworkRepository: WeatherNetworkRepository,
+//    private val weatherRepositoryDb: WeatherRepositoryDb,
     private val weatherMapper: ReqresWeatherApiToWeatherMapper
 ) : ViewModel(){
 
@@ -23,7 +25,7 @@ class MainScreenViewModel(
 
 
     init {
-        loadWeather()
+         loadWeather()
     }
 
     private fun loadWeather() {

@@ -7,13 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vadimulasevich.yourweather.R
-import com.vadimulasevich.yourweather.ResultState
+import com.vadimulasevich.yourweather.utils.ResultState
 import com.vadimulasevich.yourweather.databinding.FragmentMainScreenBinding
-import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
-import com.vadimulasevich.yourweather.network.WeatherApi
-import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
+import com.vadimulasevich.yourweather.repository.WeatherRepositoryDb
+import org.koin.core.component.KoinComponent
 
-class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
+class MainScreenFragment : Fragment(R.layout.fragment_main_screen), KoinComponent {
 
     private var _binding: FragmentMainScreenBinding? = null
     private val binding
@@ -26,14 +25,15 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
         val factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return MainScreenViewModel(
-                    WeatherNetworkRepository(WeatherApi.create()),
-                    ReqresWeatherApiToWeatherMapper()
+                    getKoin().get(),
+                    getKoin().get()
                 ) as T
             }
         }
 
         viewModel = ViewModelProvider(this, factory).get(MainScreenViewModel::class.java)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainScreenBinding.bind(view)
@@ -78,7 +78,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
 //                    wind.text = windSpeedIn
 //                    pressure.text = pressureIn
 //                    humidity.text = humidityIn
-                }
+                    }
                 }
             }
         }

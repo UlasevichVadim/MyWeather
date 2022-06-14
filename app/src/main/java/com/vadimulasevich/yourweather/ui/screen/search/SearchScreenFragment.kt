@@ -8,15 +8,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vadimulasevich.yourweather.R
-import com.vadimulasevich.yourweather.ResultState
+import com.vadimulasevich.yourweather.utils.ResultState
 import com.vadimulasevich.yourweather.databinding.FragmentSearchScreenBinding
 import com.vadimulasevich.yourweather.db.models.Weather
+import com.vadimulasevich.yourweather.di.DependencyStorage
 import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
 import com.vadimulasevich.yourweather.network.WeatherApi
 import com.vadimulasevich.yourweather.repository.WeatherNetworkRepository
+import org.koin.core.component.KoinComponent
 
 
-class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
+class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComponent {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding
@@ -31,8 +33,8 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
         val factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SearchScreenViewModel(
-                    WeatherNetworkRepository(WeatherApi.create()),
-                    ReqresWeatherApiToWeatherMapper()
+                    getKoin().get(),
+                    getKoin().get()
                 ) as T
             }
         }

@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Weather(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "tempreture") val tempreture: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "address") val address: String,
-    ) {
-}
+)

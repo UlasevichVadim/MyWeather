@@ -11,7 +11,7 @@
     android:background="@color/black"
     android:orientation="vertical"
     android:padding="@dimen/distance_16dp"
-    app:cardBackgroundColor="@color/color_item_weather_list_cardView"
+    app:cardBackgroundColor="@color/color_item_weather_list"
     app:cardCornerRadius="@dimen/distance_10dp">
 
 

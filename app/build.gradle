@@ -63,6 +63,15 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
 
+    //Зависимость для httpClient
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    //Зависимости для Koin
+    def koinVersion = '3.2.0'
+    implementation "io.insert-koin:koin-core:$koinVersion"
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    implementation "io.insert-koin:koin-test:$koinVersion"
+
 
 
     implementation 'androidx.core:core-ktx:1.7.0'

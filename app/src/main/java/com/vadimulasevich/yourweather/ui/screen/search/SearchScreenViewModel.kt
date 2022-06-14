@@ -3,7 +3,7 @@ package com.vadimulasevich.yourweather.ui.screen.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vadimulasevich.yourweather.ResultState
+import com.vadimulasevich.yourweather.utils.ResultState
 import com.vadimulasevich.yourweather.db.models.Weather
 import com.vadimulasevich.yourweather.mappers.ReqresWeatherApiToWeatherMapper
 import com.vadimulasevich.yourweather.network.modelsNetworkMainScreen.ReqresWeatherApiResponse

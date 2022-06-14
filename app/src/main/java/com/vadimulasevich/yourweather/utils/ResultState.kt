@@ -1,4 +1,4 @@
-package com.vadimulasevich.yourweather
+package com.vadimulasevich.yourweather.utils
 
 sealed class ResultState<T> {
     class Loading<T> : ResultState<T>()
