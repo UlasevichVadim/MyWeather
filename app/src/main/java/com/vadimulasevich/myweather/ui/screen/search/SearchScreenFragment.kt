@@ -7,11 +7,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vadimulasevich.myweather.R
 import com.vadimulasevich.myweather.databinding.FragmentSearchScreenBinding
-import com.vadimulasevich.myweather.db.local.models.Weather
 import com.vadimulasevich.myweather.utils.ResultState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
-
 
 class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComponent {
 
@@ -19,25 +17,17 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComp
     private val binding
         get() = _binding!!
 
-
     private lateinit var adapter: WeatherListRecyclerDiffAdapter
 
     private val viewModel: SearchScreenViewModel by viewModel()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        adapter = WeatherListRecyclerDiffAdapter(layoutInflater,
-            object : WeatherListRecyclerDiffAdapter.WeatherClickListener {
-                override fun onUserClicked(weather: Weather) {
-                }
-            })
+        adapter = WeatherListRecyclerDiffAdapter(layoutInflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         _binding = FragmentSearchScreenBinding.bind(view).apply {
             localWeatherRecyclerView.adapter = adapter
             localWeatherRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -48,9 +38,6 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComp
                     .toString())
             }
         }
-
-
-
         viewModel.localWeatherWeekList.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultState.Error -> {
@@ -77,5 +64,4 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComp
         super.onDestroyView()
         _binding = null
     }
-
 }

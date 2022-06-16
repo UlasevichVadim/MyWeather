@@ -22,7 +22,6 @@ class MainScreenViewModel(
     private val _localWeatherList = MutableLiveData<ResultState<Weather>>()
     val localWeatherList: LiveData<ResultState<Weather>> = _localWeatherList
 
-
     init {
         loadWeather()
     }
@@ -35,8 +34,8 @@ class MainScreenViewModel(
         //Нужно получить геоданные
 
         weatherNetworkRepository.getWeather(
-            lon,
             lat,
+            lon,
             object : Callback<ReceivedWeatherApiResponse> {
                 override fun onResponse(
                     call: Call<ReceivedWeatherApiResponse>,

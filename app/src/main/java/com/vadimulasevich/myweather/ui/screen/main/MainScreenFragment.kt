@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vadimulasevich.myweather.R
 import com.vadimulasevich.myweather.utils.ResultState
 import com.vadimulasevich.myweather.databinding.FragmentMainScreenBinding
@@ -17,25 +18,21 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen), KoinComponen
     private val binding
         get() = _binding!!
 
-
     private lateinit var adapter: WeatherRecyclerDiffAdapter
 
     private val viewModel: MainScreenViewModel by viewModel()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        adapter = WeatherRecyclerDiffAdapter(layoutInflater,
-            object : WeatherRecyclerDiffAdapter.WeatherClickListener {
-                override fun onUserClicked(weather: Weather) {
-                }
-            })
+        adapter = WeatherRecyclerDiffAdapter(layoutInflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMainScreenBinding.bind(view)
+        _binding = FragmentMainScreenBinding.bind(view).apply {
+            weatherRecyclerView!!.adapter = adapter
+            weatherRecyclerView!!.layoutManager = LinearLayoutManager(requireContext())
+        }
 
         viewModel.localWeatherList.observe(viewLifecycleOwner) {
             when (it) {

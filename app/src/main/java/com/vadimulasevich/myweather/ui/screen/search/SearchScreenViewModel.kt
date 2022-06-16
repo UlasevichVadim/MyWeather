@@ -30,24 +30,20 @@ class SearchScreenViewModel(
                     response: Response<ReceivedWeatherApiForecastResponse>,
                 ) {
                     val responseBody = response.body()
-
                     if (responseBody == null) {
                         _localWeatherWeekList.value =
                             ResultState.Error(RuntimeException("Response body is null"))
                         return
                     }
-
                     val weatherList = weatherMapper.toForecastList(responseBody)
                     _localWeatherWeekList.value = ResultState.Success(weatherList)
                 }
-
                 override fun onFailure(
                     call: Call<ReceivedWeatherApiForecastResponse>,
                     t: Throwable,
                 ) {
                     _localWeatherWeekList.value = ResultState.Error(t)
                 }
-
             })
     }
 }

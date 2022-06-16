@@ -8,15 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vadimulasevich.myweather.databinding.ItemWeatherSearchScreenBinding
 import com.vadimulasevich.myweather.db.local.models.Weather
 
-
 class WeatherListRecyclerDiffAdapter(
-    private val layoutInflater: LayoutInflater,
-    private val clickListener: WeatherClickListener,
+    private val layoutInflater: LayoutInflater
 ) : ListAdapter<Weather, WeatherListRecyclerDiffAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     fun setData(weather: List<Weather>) {
         submitList(weather)
-
     }
 
     override fun onCreateViewHolder(
@@ -32,7 +29,7 @@ class WeatherListRecyclerDiffAdapter(
 
         holder.binding.apply {
             itemWeatherDayAndTime.text = item.dateTime
-            itemWeatherTempretureDay.text = "${item.tempreture} °C"
+            itemWeatherTempretureDay.text = "${item.tempreture!!.toInt()} °C"
             itemWeatherPrecipitationProbability.text = "Precipitation probability: ${item.precipitationProbability}"
             itemWeatherVisibility.text = "Visibility: ${item.visibility} м"
             itemWeatherCloudy.text = "Cloudy: ${item.clouds} %"
@@ -41,18 +38,6 @@ class WeatherListRecyclerDiffAdapter(
 
     inner class MyViewHolder(val binding: ItemWeatherSearchScreenBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        init {
-            binding.root.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    val weather = getItem(adapterPosition)
-                    clickListener.onUserClicked(weather)
-                }
-            }
-        }
-    }
-
-    interface WeatherClickListener {
-        fun onUserClicked(weather: Weather)
     }
 
     companion object {
@@ -61,7 +46,6 @@ class WeatherListRecyclerDiffAdapter(
                 override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
                     return oldItem.id == newItem.id
                 }
-
                 override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
                     return oldItem == newItem
                 }
