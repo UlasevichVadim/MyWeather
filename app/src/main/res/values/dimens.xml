@@ -15,4 +15,8 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="distance_16dp">16dp</dimen>
     <dimen name="text_size_30sp">30sp</dimen>
+    <dimen name="distance_200dp">200dp</dimen>
+    <dimen name="distance_250dp">250dp</dimen>
+    <dimen name="distance_24dp">24dp</dimen>
+    <dimen name="distance_48dp">48dp</dimen>
 </resources>

@@ -1,6 +1,6 @@
-package com.vadimulasevich.myweather.db.network.models
+package com.vadimulasevich.myweather.db.network.modelsOneDay
 
-data class SysNetwork(
+data class Sys(
     val country: String,
     val id: Int,
     val sunrise: Int,

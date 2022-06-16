@@ -1,6 +1,6 @@
-package com.vadimulasevich.myweather.db.network.models
+package com.vadimulasevich.myweather.db.network.modelsOneDay
 
-data class MainNetwork(
+data class Main(
     val feels_like: Double,
     val grnd_level: Int,
     val humidity: Int,

@@ -1,10 +1,15 @@
 package com.vadimulasevich.myweather.ui.screen.aboutapp
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import com.vadimulasevich.myweather.BuildConfig
+import com.vadimulasevich.myweather.Constants.WEB
 import com.vadimulasevich.myweather.R
 import com.vadimulasevich.myweather.databinding.FragmentAboutAppScreenBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class AboutAppScreenFragment : Fragment(R.layout.fragment_about_app_screen) {
@@ -13,9 +18,23 @@ class AboutAppScreenFragment : Fragment(R.layout.fragment_about_app_screen) {
     private val binding
         get() = _binding!!
 
+    private val viewModel: AboutAppScreenViewModel by viewModel()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAboutAppScreenBinding.bind(view)
+        _binding = FragmentAboutAppScreenBinding.bind(view).apply {
+            appVersionTextView.text = "Application version ${BuildConfig.VERSION_NAME}"
+            websiteApiTextView.text = "$WEB"
+            descriptionWorkAppTextView.text = "The app runs on the api openweather"
+            websiteApiTextView.setOnClickListener {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(WEB)
+                    )
+                )
+            }
+        }
     }
 
 

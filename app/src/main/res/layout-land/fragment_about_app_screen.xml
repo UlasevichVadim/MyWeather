@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/about_app_background"
+    android:background="@drawable/all_screen_background"
     android:orientation="vertical"
     tools:context=".ui.screen.aboutapp.AboutAppScreenFragment">
 
@@ -25,12 +25,13 @@
         android:id="@+id/descriptionWorkAppTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/distance_30dp"
-        android:layout_marginTop="119dp"
+        android:layout_marginTop="109dp"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="The app runs on the api openweather" />
@@ -39,8 +40,7 @@
         android:id="@+id/websiteApiTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/distance_30dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="226dp"
+        android:layout_marginBottom="103dp"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_24sp"
@@ -48,7 +48,6 @@
         app:layout_constraintBottom_toTopOf="@+id/appVersionTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionWorkAppTextView"
         tools:text="https://openweathermap.org/" />
 
 

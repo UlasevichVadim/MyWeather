@@ -9,10 +9,11 @@
 
     <ProgressBar
         android:id="@+id/progressBarSearchScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/distance_50dp"
+        android:layout_height="@dimen/distance_50dp"
         android:layout_gravity="center"
         android:visibility="gone" />
+
 
     <TextView
         android:id="@+id/showMessageErrorOnSearchScreen"
@@ -23,8 +24,8 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <EditText
@@ -35,15 +36,14 @@
             android:layout_marginTop="@dimen/distance_30dp"
             android:hint="@string/enter_city"
             android:inputType="textPersonName"
-            android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
         <Button
 
             android:id="@+id/searchButton"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/distance_200dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/distance_100dp"
+            android:layout_marginHorizontal="@dimen/distance_250dp"
             android:layout_marginTop="@dimen/distance_30dp"
             android:text="@string/search_button_text"
             android:textColor="@color/white"
@@ -54,6 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/distance_30dp" />
+
+
     </LinearLayout>
 
 </FrameLayout>

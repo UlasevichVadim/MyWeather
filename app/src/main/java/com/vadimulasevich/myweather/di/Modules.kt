@@ -3,7 +3,8 @@ package com.vadimulasevich.myweather.di
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.vadimulasevich.myweather.db.local.WeatherDatabase
-import com.vadimulasevich.myweather.mappers.ReqresWeatherApiToWeatherMapper
+import com.vadimulasevich.myweather.mappers.ReceivedWeatherApiToWeatherMapper
+import com.vadimulasevich.myweather.ui.screen.aboutapp.AboutAppScreenViewModel
 import com.vadimulasevich.myweather.ui.screen.main.MainScreenViewModel
 import com.vadimulasevich.myweather.ui.screen.search.SearchScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -30,11 +31,12 @@ val dbModule = module {
 val mainModule = module {
     single { DependencyFactories.createRepositoryNt(get()) }
     single { DependencyFactories.createRepositoryDb(get(), get()) }
-    single { ReqresWeatherApiToWeatherMapper() }
+    single { ReceivedWeatherApiToWeatherMapper() }
     single { DependencyFactories.createIoExecutor() }
 
     viewModel { MainScreenViewModel(get(), get()) }
     viewModel { SearchScreenViewModel(get(), get()) }
+    viewModel { AboutAppScreenViewModel() }
 }
 
 val appModules = listOf(

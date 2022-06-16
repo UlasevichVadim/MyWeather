@@ -15,7 +15,8 @@ class WeatherListRecyclerDiffAdapter(
 ) : ListAdapter<Weather, WeatherListRecyclerDiffAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     fun setData(weather: List<Weather>) {
-        submitList(weather.toMutableList())
+        submitList(weather)
+
     }
 
     override fun onCreateViewHolder(
@@ -30,8 +31,11 @@ class WeatherListRecyclerDiffAdapter(
         val item = getItem(position)
 
         holder.binding.apply {
-            itemWeatherNamePlace.text = item.address
-            itemWeatherTempretureAndDescription.text = "${item.tempreture} °C, ${item.description}"
+            itemWeatherDayAndTime.text = item.dateTime
+            itemWeatherTempretureDay.text = "${item.tempreture} °C"
+            itemWeatherPrecipitationProbability.text = "Precipitation probability: ${item.precipitationProbability}"
+            itemWeatherVisibility.text = "Visibility: ${item.visibility} м"
+            itemWeatherCloudy.text = "Cloudy: ${item.clouds} %"
         }
     }
 
@@ -59,7 +63,7 @@ class WeatherListRecyclerDiffAdapter(
                 }
 
                 override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
-                    return oldItem != newItem
+                    return oldItem == newItem
                 }
             }
     }

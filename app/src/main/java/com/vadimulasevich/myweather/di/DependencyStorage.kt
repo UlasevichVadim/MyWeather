@@ -4,7 +4,7 @@ import android.content.Context
 import com.vadimulasevich.myweather.db.local.WeatherDatabase
 import com.vadimulasevich.myweather.db.local.dao.WeatherDao
 import com.vadimulasevich.myweather.di.DependencyStorage.Api.apiWeather
-import com.vadimulasevich.myweather.mappers.ReqresWeatherApiToWeatherMapper
+import com.vadimulasevich.myweather.mappers.ReceivedWeatherApiToWeatherMapper
 import com.vadimulasevich.myweather.db.repositories.local.WeatherRepositoryDb
 import com.vadimulasevich.myweather.utils.PermissionChecker
 
@@ -76,7 +76,7 @@ object DependencyStorage {
     }
 
     object Mappers {
-        val reqresWeatherMapper = ReqresWeatherApiToWeatherMapper()
+        val reqresWeatherMapper = ReceivedWeatherApiToWeatherMapper()
     }
 
 

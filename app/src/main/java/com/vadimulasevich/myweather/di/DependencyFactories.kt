@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.vadimulasevich.myweather.BuildConfig
+import com.vadimulasevich.myweather.Constants
 import com.vadimulasevich.myweather.db.local.WeatherDatabase
 import com.vadimulasevich.myweather.db.local.dao.WeatherDao
 import com.vadimulasevich.myweather.di.DependencyStorage.Android.applicationContext
@@ -41,7 +42,7 @@ object DependencyFactories {
 
     fun createRetrofit(client: OkHttpClient) = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(WeatherApi.BASE_URL)
+        .baseUrl(Constants.BASE_URL)
         .client(client)
         .build()
 
