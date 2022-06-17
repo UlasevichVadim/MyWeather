@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.preference:preference:1.2.0'
+
     //Зависимости для навигации
     def nav_version = "2.4.2"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

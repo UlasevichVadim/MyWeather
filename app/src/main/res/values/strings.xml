@@ -3,4 +3,20 @@
     <string name="weather_in_your_city">Weather in your city</string>
     <string name="enter_city">Please enter name city</string>
     <string name="search_button_text">Search</string>
+    <!-- Preference Titles -->
+    <string name="weather_header">Weather</string>
+    <string name="app_header">Application</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="background_title">Default background action</string>
+
+    <!-- Sync Preferences -->
+    <string name="switch_type_weather_units_title">Type units weather</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="type_weather_units_fahrenheit">Fahrenheit</string>
+    <string name="type_weather_units_celsius">celsius</string>
 </resources>
