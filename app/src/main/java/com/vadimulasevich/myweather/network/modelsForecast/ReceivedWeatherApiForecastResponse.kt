@@ -1,7 +1,7 @@
-package com.vadimulasevich.myweather.db.network.modelsForecast
+package com.vadimulasevich.myweather.network.modelsForecast
 
 data class ReceivedWeatherApiForecastResponse(
-    val city: City_F,
+    val city: CityForecast,
     val cnt: Int,
     val cod: String,
     val list: List<Forecast>,

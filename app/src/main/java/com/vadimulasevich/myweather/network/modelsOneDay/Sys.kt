@@ -1,4 +1,4 @@
-package com.vadimulasevich.myweather.db.network.modelsOneDay
+package com.vadimulasevich.myweather.network.modelsOneDay
 
 data class Sys(
     val country: String,

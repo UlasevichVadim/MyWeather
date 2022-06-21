@@ -6,9 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import com.vadimulasevich.myweather.BuildConfig
-import com.vadimulasevich.myweather.Constants.WEB
 import com.vadimulasevich.myweather.R
 import com.vadimulasevich.myweather.databinding.FragmentAboutAppScreenBinding
+import com.vadimulasevich.myweather.utils.Constants.WEB
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AboutAppScreenFragment : Fragment(R.layout.fragment_about_app_screen) {

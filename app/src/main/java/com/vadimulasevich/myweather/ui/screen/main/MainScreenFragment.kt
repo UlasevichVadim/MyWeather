@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vadimulasevich.myweather.R
 import com.vadimulasevich.myweather.utils.ResultState
 import com.vadimulasevich.myweather.databinding.FragmentMainScreenBinding
-import com.vadimulasevich.myweather.db.local.models.Weather
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 
@@ -24,32 +23,39 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen), KoinComponen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("getWeather", "onCreate")
         adapter = WeatherRecyclerDiffAdapter(layoutInflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainScreenBinding.bind(view).apply {
-            weatherRecyclerView!!.adapter = adapter
-            weatherRecyclerView!!.layoutManager = LinearLayoutManager(requireContext())
+            weatherRecyclerView?.adapter = adapter
+            weatherRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
         }
+        Log.d("getWeather", "onViewCreated")
+
+
 
         viewModel.localWeatherList.observe(viewLifecycleOwner) {
             when (it) {
                 is ResultState.Error -> {
                     Log.d("getWeather", "Error")
                     binding.progressBarMainScreen.visibility = View.VISIBLE
+                    binding.weatherRecyclerView?.visibility = View.GONE
                     binding.showMessageErrorOnMainScreen.text = "Error: ${it.throwable.message}"
                     Log.e("SearchScreenFragment", it.throwable.stackTraceToString())
                 }
                 is ResultState.Loading -> {
                     Log.d("getWeather", "Loading")
                     binding.progressBarMainScreen.visibility = View.VISIBLE
+                    binding.weatherRecyclerView?.visibility = View.GONE
                     binding.showMessageErrorOnMainScreen.text = "Loading..."
                 }
                 is ResultState.Success -> {
                     Log.d("getWeather", "Success")
                     binding.progressBarMainScreen.visibility = View.GONE
+                    binding.weatherRecyclerView?.visibility = View.VISIBLE
                     binding.showMessageErrorOnMainScreen.visibility = View.GONE
                     adapter.setData(it.data)
                 }

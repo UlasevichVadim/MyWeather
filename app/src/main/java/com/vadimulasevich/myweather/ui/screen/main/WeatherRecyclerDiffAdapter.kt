@@ -40,7 +40,7 @@ class WeatherRecyclerDiffAdapter(
             tempMax.text = "Max: ${item.tempretureMax!!.toInt()} °C"
             tempMin.text = "Min: ${item.tempretureMin!!.toInt()} °C"
             sunrise.text =
-                SimpleDateFormat("HH:mm:ss a").format(Date(item.sunrise!!*1000L))
+                SimpleDateFormat("HH:mm a").format(Date(item.sunrise!!*1000L))
             sunset.text =
                 SimpleDateFormat("HH:mm a").format(Date(item.sunset!!*1000L))
             wind.text = "${item.wind} m/s"

@@ -1,13 +1,12 @@
-package com.vadimulasevich.myweather.db.network.modelsForecast
+package com.vadimulasevich.myweather.network.modelsOneDay
 
-data class Main_F(
+data class Main(
     val feels_like: Double,
     val grnd_level: Int,
     val humidity: Int,
     val pressure: Int,
     val sea_level: Int,
     val temp: Double,
-    val temp_kf: Double,
     val temp_max: Double,
     val temp_min: Double
 )

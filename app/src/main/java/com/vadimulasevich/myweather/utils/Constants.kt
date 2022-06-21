@@ -1,4 +1,4 @@
-package com.vadimulasevich.myweather
+package com.vadimulasevich.myweather.utils
 
 
 object Constants {

@@ -1,7 +1,7 @@
-package com.vadimulasevich.myweather.db.network.modelsForecast
+package com.vadimulasevich.myweather.network.modelsForecast
 
-data class City_F(
-    val coord: Coord_F,
+data class CityForecast(
+    val coord: CoordForecast,
     val country: String,
     val id: Int,
     val name: String,

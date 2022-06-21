@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vadimulasevich.myweather.db.local.models.Weather
-import com.vadimulasevich.myweather.db.network.modelsOneDay.ReceivedWeatherApiResponse
+import com.vadimulasevich.myweather.network.modelsOneDay.ReceivedWeatherApiResponse
 import com.vadimulasevich.myweather.utils.ResultState
 import com.vadimulasevich.myweather.mappers.ReceivedWeatherApiToWeatherMapper
 import com.vadimulasevich.myweather.db.repositories.network.WeatherRepositoryNetwork
@@ -23,6 +23,7 @@ class MainScreenViewModel(
     val localWeatherList: LiveData<ResultState<Weather>> = _localWeatherList
 
     init {
+        Log.d("getWeather", "init MainScreenViewModel")
         loadWeather()
     }
 

@@ -1,6 +1,6 @@
-package com.vadimulasevich.myweather.db.network.modelsForecast
+package com.vadimulasevich.myweather.network.modelsForecast
 
-data class Weather_F(
+data class WeatherForecast(
     val description: String,
     val icon: String,
     val id: Int,

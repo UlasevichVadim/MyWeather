@@ -1,9 +1,5 @@
 package com.vadimulasevich.myweather.di
 
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.vadimulasevich.myweather.db.local.WeatherDatabase
-import com.vadimulasevich.myweather.mappers.ReceivedWeatherApiToWeatherMapper
 import com.vadimulasevich.myweather.ui.screen.aboutapp.AboutAppScreenViewModel
 import com.vadimulasevich.myweather.ui.screen.main.MainScreenViewModel
 import com.vadimulasevich.myweather.ui.screen.search.SearchScreenViewModel
@@ -18,25 +14,21 @@ val networkModule = module {
     single { DependencyFactories.createApi(get()) }
 }
 
-val dbModule = module {
-    single {
-        Room
-            .databaseBuilder(get(), WeatherDatabase::class.java, "db")
-            .setJournalMode(RoomDatabase.JournalMode.TRUNCATE)
-            .build()
-    }
-    single { get<WeatherDatabase>().weatherDao() }
-}
-
 val mainModule = module {
     single { DependencyFactories.createRepositoryNt(get()) }
     single { DependencyFactories.createRepositoryDb(get(), get()) }
-    single { ReceivedWeatherApiToWeatherMapper() }
+    single { DependencyFactories.createMappers() }
     single { DependencyFactories.createIoExecutor() }
+    single { DependencyFactories.createPermissionChecker(get()) }
 
     viewModel { MainScreenViewModel(get(), get()) }
     viewModel { SearchScreenViewModel(get(), get()) }
     viewModel { AboutAppScreenViewModel() }
+}
+
+val dbModule = module {
+    single { DependencyFactories.createAppDatabase(get()) }
+    single { DependencyFactories.createDao(get()) }
 }
 
 val appModules = listOf(

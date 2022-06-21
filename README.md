@@ -6,9 +6,9 @@
 **Please click the image below to enlarge.**
 
 
-<img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1.1.png" height="600" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1.2.png" height="600" width="300" hspace="40">
+<img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1.1.png" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1.2.png" width="300" hspace="40">
 
-<img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1%2C3.png" height="600" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1%2C4.png" height="600" width="300" hspace="40">
+<img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1%2C3.png" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1%2C4.png" width="300" hspace="40">
 
 
 

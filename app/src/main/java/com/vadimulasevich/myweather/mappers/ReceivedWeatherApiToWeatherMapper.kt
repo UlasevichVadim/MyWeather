@@ -1,9 +1,9 @@
 package com.vadimulasevich.myweather.mappers
 
 import com.vadimulasevich.myweather.db.local.models.Weather
-import com.vadimulasevich.myweather.db.network.modelsForecast.Forecast
-import com.vadimulasevich.myweather.db.network.modelsForecast.ReceivedWeatherApiForecastResponse
-import com.vadimulasevich.myweather.db.network.modelsOneDay.ReceivedWeatherApiResponse
+import com.vadimulasevich.myweather.network.modelsForecast.Forecast
+import com.vadimulasevich.myweather.network.modelsForecast.ReceivedWeatherApiForecastResponse
+import com.vadimulasevich.myweather.network.modelsOneDay.ReceivedWeatherApiResponse
 
 class ReceivedWeatherApiToWeatherMapper {
 
