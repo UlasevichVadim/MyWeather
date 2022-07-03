@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    //Зависимости для экрана настроек
     implementation 'androidx.preference:preference:1.2.0'
 
     //Зависимости для навигации
