@@ -65,7 +65,6 @@ fun createPermissionChecker(applicationContext: Context): PermissionChecker {
     return PermissionChecker(applicationContext)
 }
 
-
 fun createAppDatabase(context: Context): WeatherDatabase {
     return Room
         .databaseBuilder(context, WeatherDatabase::class.java, "db")
@@ -76,7 +75,6 @@ fun createAppDatabase(context: Context): WeatherDatabase {
 fun createDao(appDatabase: WeatherDatabase): WeatherDao {
     return appDatabase.weatherDao()
 }
-
 
 val networkModule = module {
     single { createLoggingInterceptor() }
