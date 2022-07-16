@@ -11,7 +11,7 @@ import com.vadimulasevich.myweather.db.local.models.Weather
 interface WeatherDao {
 
     @Query("SELECT * FROM weather")
-    fun getWeather(): LiveData<List<Weather>>
+    fun getWeather(): Weather
 
     @Insert
     fun insertWeather(weather: Weather)

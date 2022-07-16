@@ -1,10 +1,11 @@
 package com.vadimulasevich.myweather.ui.screen.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vadimulasevich.myweather.db.local.models.Weather
+import com.vadimulasevich.myweather.db.repositories.local.LocationRepository
+import com.vadimulasevich.myweather.db.repositories.local.WeatherRepositoryDb
 import com.vadimulasevich.myweather.network.modelsOneDay.ReceivedWeatherApiResponse
 import com.vadimulasevich.myweather.utils.ResultState
 import com.vadimulasevich.myweather.mappers.ReceivedWeatherApiToWeatherMapper
@@ -15,24 +16,22 @@ import retrofit2.Response
 
 class MainScreenViewModel(
     private val weatherNetworkRepository: WeatherRepositoryNetwork,
-//    private val weatherRepositoryDb: WeatherRepositoryDb,
+    private val weatherRepositoryDb: WeatherRepositoryDb,
     private val weatherMapper: ReceivedWeatherApiToWeatherMapper,
+    private val locationRepository: LocationRepository,
 ) : ViewModel() {
 
     private val _localWeatherList = MutableLiveData<ResultState<Weather>>()
     val localWeatherList: LiveData<ResultState<Weather>> = _localWeatherList
 
-    init {
-        Log.d("getWeather", "init MainScreenViewModel")
-        loadWeather()
-    }
 
-    private fun loadWeather() {
+    fun loadWeather() {
         _localWeatherList.value = ResultState.Loading()
-
-        val lon = 27.5667
-        val lat = 53.9
-        //Нужно получить геоданные
+//
+//        val lon = locationRepository.getLocation().longitude
+//        val lat = locationRepository.getLocation().latitude
+        val lon = 0.00
+        val lat = 0.00
 
         weatherNetworkRepository.getWeather(
             lat,
@@ -42,16 +41,14 @@ class MainScreenViewModel(
                     call: Call<ReceivedWeatherApiResponse>,
                     response: Response<ReceivedWeatherApiResponse>,
                 ) {
-                    Log.d("getWeather", "In")
                     val responseBody = response.body()
 
                     if (responseBody == null) {
-                        _localWeatherList.value =
-                            ResultState.Error(RuntimeException("Response body is null"))
-                        return
+                        val weather = weatherRepositoryDb.getWeather()
+                        _localWeatherList.value = ResultState.Success(weather)
                     }
-
-                    val weather = weatherMapper.toWeather(responseBody)
+                    val weather = weatherMapper.toWeather(responseBody!!)
+                    weatherRepositoryDb.addWeather(weather)
                     _localWeatherList.value = ResultState.Success(weather)
                 }
 

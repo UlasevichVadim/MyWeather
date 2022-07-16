@@ -44,9 +44,9 @@ class WeatherRecyclerDiffAdapter(
             sunset.text =
                 SimpleDateFormat("HH:mm a").format(Date(item.sunset!!*1000L))
             wind.text = "${item.wind} m/s"
-            pressure.text = "${item.pressure} hPa"
-            humidity.text = "${item.humidity} %"
-            clouds.text = "${item.clouds} %"
+            pressure?.text = "${item.pressure} hPa"
+            humidity?.text = "${item.humidity} %"
+            clouds?.text = "${item.clouds} %"
         }
     }
 

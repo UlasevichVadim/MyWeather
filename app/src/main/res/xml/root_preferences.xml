@@ -1,25 +1,13 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/weather_header_preferences">
+    <PreferenceCategory app:title="@string/language_header_preferences">
 
 
         <SwitchPreferenceCompat
             app:key="sync"
-            app:title="@string/weather_units_measurements_setting_preferences"
-            app:summaryOff="@string/type_weather_units_fahrenheit_setting"
-            app:summaryOn="@string/type_weather_units_celsius_setting" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/application_header_preferences">
-
-                <ListPreference
-                    app:defaultValue="all_screen_background"
-                    app:entries="@array/background_entries"
-                    app:entryValues="@array/background_values"
-                    app:key="background"
-                    app:title="@string/background_setting_preferences"
-                    app:useSimpleSummaryProvider="true" />
+            app:summaryOff="@string/type_language_english_fahrenheit_setting"
+            app:summaryOn="@string/type_language_russian_celsius_setting"
+            app:title="@string/language_choose_setting_preferences" />
 
     </PreferenceCategory>
 

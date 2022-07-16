@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 import com.vadimulasevich.myweather.BuildConfig
 import com.vadimulasevich.myweather.db.local.WeatherDatabase
 import com.vadimulasevich.myweather.db.local.dao.WeatherDao
+import com.vadimulasevich.myweather.db.repositories.local.LocationRepository
 import com.vadimulasevich.myweather.db.repositories.local.WeatherRepositoryDb
 import com.vadimulasevich.myweather.db.repositories.network.WeatherRepositoryNetwork
 import com.vadimulasevich.myweather.mappers.ReceivedWeatherApiToWeatherMapper
@@ -53,6 +54,8 @@ fun createRepositoryNt(weatherApi: WeatherApi) = WeatherRepositoryNetwork(weathe
 fun createRepositoryDb(weatherDao: WeatherDao, ioExecutor: Executor) =
     WeatherRepositoryDb(weatherDao, ioExecutor)
 
+fun createLocationRepository() = LocationRepository()
+
 fun createMappers(): ReceivedWeatherApiToWeatherMapper {
     return ReceivedWeatherApiToWeatherMapper()
 }
@@ -61,9 +64,6 @@ fun createIoExecutor(): Executor {
     return Executors.newFixedThreadPool(4)
 }
 
-fun createPermissionChecker(applicationContext: Context): PermissionChecker {
-    return PermissionChecker(applicationContext)
-}
 
 fun createAppDatabase(context: Context): WeatherDatabase {
     return Room
@@ -86,11 +86,11 @@ val networkModule = module {
 val mainModule = module {
     single { createRepositoryNt(get()) }
     single { createRepositoryDb(get(), get()) }
+    single { createLocationRepository() }
     single { createMappers() }
     single { createIoExecutor() }
-    single { createPermissionChecker(get()) }
 
-    viewModel { MainScreenViewModel(get(), get()) }
+    viewModel { MainScreenViewModel(get(), get(), get(), get()) }
     viewModel { SearchScreenViewModel(get(), get()) }
     viewModel { AboutAppScreenViewModel() }
 }

@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">My Weather</string>
+
+    <string name="text_input_line_hint_search_screen">Please enter name city</string>
+    <string name="text_button_search_screen">Search</string>
+
+    <string name="language_header_preferences">Language Application</string>
+
+    <string name="language_choose_setting_preferences">Language choose</string>
+    <string name="type_language_english_fahrenheit_setting">English</string>
+    <string name="type_language_russian_celsius_setting">Russian</string>
+</resources>
