@@ -24,8 +24,6 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = WeatherListRecyclerDiffAdapter(layoutInflater)
-        Log.d("getWeather", "onCreate")
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,8 +37,6 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComp
                     .text
                     .toString())
             }
-            Log.d("getWeather", "onViewCreated")
-
         }
         viewModel.localWeatherWeekList.observe(viewLifecycleOwner) {
             when (it) {
@@ -56,8 +52,6 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen), KoinComp
                     binding.showMessageErrorOnSearchScreen.text = "Loading..."
                 }
                 is ResultState.Success -> {
-                    Log.d("getWeather", "Success")
-
                     binding.progressBarSearchScreen.visibility = View.GONE
                     binding.localWeatherRecyclerView.visibility = View.VISIBLE
                     adapter.setData(it.data)

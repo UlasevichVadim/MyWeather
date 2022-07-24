@@ -25,7 +25,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-
 fun createLoggingInterceptor(): HttpLoggingInterceptor {
     val logging = HttpLoggingInterceptor()
     logging.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -48,7 +47,6 @@ fun createRetrofit(client: OkHttpClient) = Retrofit.Builder()
 
 fun createApi(retrofit: Retrofit) = retrofit.create(WeatherApi::class.java)
 
-
 fun createRepositoryNt(weatherApi: WeatherApi) = WeatherRepositoryNetwork(weatherApi)
 
 fun createRepositoryDb(weatherDao: WeatherDao, ioExecutor: Executor) =
@@ -63,7 +61,6 @@ fun createMappers(): ReceivedWeatherApiToWeatherMapper {
 fun createIoExecutor(): Executor {
     return Executors.newFixedThreadPool(4)
 }
-
 
 fun createAppDatabase(context: Context): WeatherDatabase {
     return Room

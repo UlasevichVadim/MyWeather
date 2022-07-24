@@ -8,18 +8,41 @@
     android:orientation="vertical"
     tools:context=".ui.screen.aboutapp.AboutAppScreenFragment">
 
-    <TextView
-        android:id="@+id/appVersionTextView"
+
+    <LinearLayout
+        android:id="@+id/applicationVersionLinear"
         android:layout_width="match_parent"
         android:layout_height="@dimen/distance_30dp"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_24sp"
-        android:textStyle="bold"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Application version" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/appVersionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/text_version_app_about_app_screen"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_24sp"
+            android:textStyle="bold" />
+
+
+        <Space
+            android:layout_width="@dimen/distance_10dp"
+            android:layout_height="@dimen/distance_10dp" />
+
+        <TextView
+            android:id="@+id/appVersionNumberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_24sp"
+            android:textStyle="bold"
+            tools:text="1" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/descriptionWorkAppTextView"
@@ -27,13 +50,13 @@
         android:layout_height="@dimen/distance_30dp"
         android:layout_marginTop="119dp"
         android:gravity="center"
+        android:text="@string/text_api_runs_screen_about_app"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="The app runs on the api openweather" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/websiteApiTextView"
@@ -45,7 +68,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/appVersionTextView"
+        app:layout_constraintBottom_toTopOf="@+id/applicationVersionLinear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionWorkAppTextView"

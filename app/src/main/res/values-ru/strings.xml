@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Моя погода</string>
+
+    <string name="item_main_screen_updated_at">Обновлено:</string>
+    <string name="item_main_screen_min">Мин:</string>
+    <string name="item_main_screen_max">Макс:</string>
+    <string name="item_main_screen_sunrise">Рассвет</string>
+    <string name="item_main_screen_sunset">Восход</string>
+    <string name="item_main_screen_wind">Ветер</string>
+    <string name="item_main_screen_pressure">Давление</string>
+    <string name="item_main_screen_humidity">Влажность</string>
+    <string name="item_main_screen_clouds">Облачность</string>
+
+    <string name="text_input_line_hint_search_screen">Пожалуйста введите название города</string>
+    <string name="text_button_search_screen">Поиск</string>
+    <string name="item_search_screen_precipitation">Осадки:</string>
+    <string name="item_search_screen_visibility">Видимость:</string>
+    <string name="item_search_screen_cloudy">Облачность:</string>
+
+    <string name="text_api_runs_screen_about_app">Приложение работает на api openweather</string>
+    <string name="text_version_app_about_app_screen">Версия приложения</string>
+
+    <string name="language_header_preferences">Язык приложения</string>
+
+    <string name="language_choose_setting_preferences">Язык</string>
+    <string name="type_language_english_fahrenheit_setting">Английский</string>
+    <string name="type_language_russian_celsius_setting">Русский</string>
+    <string name="description_language">Выбор языка приложения</string>
+    <string name="choose_language">Выберите язык</string>
+</resources>

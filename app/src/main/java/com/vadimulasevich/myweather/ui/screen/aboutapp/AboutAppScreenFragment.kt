@@ -22,9 +22,8 @@ class AboutAppScreenFragment : Fragment(R.layout.fragment_about_app_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAboutAppScreenBinding.bind(view).apply {
-            appVersionTextView.text = "Application version ${BuildConfig.VERSION_NAME}"
-            websiteApiTextView.text = "$WEB"
-            descriptionWorkAppTextView.text = "The app runs on the api openweather"
+            appVersionNumberTextView.text = BuildConfig.VERSION_NAME
+            websiteApiTextView.text = WEB
             websiteApiTextView.setOnClickListener {
                 startActivity(
                     Intent(

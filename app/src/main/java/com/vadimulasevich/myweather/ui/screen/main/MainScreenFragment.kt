@@ -43,12 +43,12 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
                         val locationLat = location.latitude
                         val locationLon = location.longitude
                         val locationRepository = LocationRepository()
-                        if(PermissionChecker.hasWriteExternalStoragePermission(requireContext())){
-                            locationRepository.setLocation(latitude = locationLat,
-                                longitude = locationLon)
-                        }else{
-
-                        }
+//                        if(PermissionChecker.hasWriteExternalStoragePermission(requireContext())){
+//                            locationRepository.setLocation(latitude = locationLat,
+//                                longitude = locationLon)
+//                        }else{
+//
+//                        }
                     }
                 }
             },
@@ -56,7 +56,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
         )
     }
 
-
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<out String>, grantResults: IntArray,
     ) {

@@ -8,7 +8,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.vadimulasevich.myweather.R
 import com.vadimulasevich.myweather.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null

@@ -24,10 +24,8 @@ class MainScreenViewModel(
     private val _localWeatherList = MutableLiveData<ResultState<Weather>>()
     val localWeatherList: LiveData<ResultState<Weather>> = _localWeatherList
 
-
     fun loadWeather() {
         _localWeatherList.value = ResultState.Loading()
-//
 //        val lon = locationRepository.getLocation().longitude
 //        val lat = locationRepository.getLocation().latitude
         val lon = 0.00
@@ -42,7 +40,6 @@ class MainScreenViewModel(
                     response: Response<ReceivedWeatherApiResponse>,
                 ) {
                     val responseBody = response.body()
-
                     if (responseBody == null) {
                         val weather = weatherRepositoryDb.getWeather()
                         _localWeatherList.value = ResultState.Success(weather)
@@ -51,7 +48,6 @@ class MainScreenViewModel(
                     weatherRepositoryDb.addWeather(weather)
                     _localWeatherList.value = ResultState.Success(weather)
                 }
-
                 override fun onFailure(call: Call<ReceivedWeatherApiResponse>, t: Throwable) {
                     _localWeatherList.value = ResultState.Error(t)
                 }

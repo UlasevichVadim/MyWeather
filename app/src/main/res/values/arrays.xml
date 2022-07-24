@@ -1,12 +1,6 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="background_entries">
-        <item>all_screen_background</item>
-        <item>about_app_background</item>
-    </string-array>
-
-    <string-array name="background_values">
-        <item>all_screen_background</item>
-        <item>about_app_background</item>
+    <string-array name="Language">
+        <item>@string/type_language_english_fahrenheit_setting</item>
+        <item>@string/type_language_russian_celsius_setting</item>
     </string-array>
 </resources>

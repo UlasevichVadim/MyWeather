@@ -1,6 +1,5 @@
 package com.vadimulasevich.myweather.ui.screen.search
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -27,16 +26,12 @@ class WeatherListRecyclerDiffAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = getItem(position)
-        Log.d("getWeather", "onBindViewHolder")
-
         holder.binding.apply {
-            Log.d("getWeather", "holder.binding.apply")
-
             itemWeatherDayAndTime.text = item.dateTime
             itemWeatherTempretureDay.text = "${item.tempreture!!.toInt()} °C"
-            itemWeatherPrecipitationProbability.text = "Precipitation probability: ${item.precipitationProbability}"
-            itemWeatherVisibility.text = "Visibility: ${item.visibility} м"
-            itemWeatherCloudy.text = "Cloudy: ${item.clouds} %"
+            itemWeatherPrecipitationProbabilityNumber.text = "${item.precipitationProbability} %"
+            itemWeatherVisibilityNumber.text = "${item.visibility} м"
+            itemWeatherCloudyNumber.text = "${item.clouds} %"
         }
     }
 

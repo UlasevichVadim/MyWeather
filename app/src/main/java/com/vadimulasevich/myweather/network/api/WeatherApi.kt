@@ -1,6 +1,5 @@
 package com.vadimulasevich.myweather.network.api
 
-
 import com.vadimulasevich.myweather.network.modelsForecast.ReceivedWeatherApiForecastResponse
 import com.vadimulasevich.myweather.network.modelsOneDay.ReceivedWeatherApiResponse
 import com.vadimulasevich.myweather.utils.Constants
@@ -24,5 +23,4 @@ interface WeatherApi {
         @Query("units") units: String = Constants.WEATHER_UNIT,
         @Query("appid") appid: String = Constants.API_KEY
     ): Call<ReceivedWeatherApiForecastResponse>
-
 }

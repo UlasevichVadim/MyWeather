@@ -1,6 +1,5 @@
 package com.vadimulasevich.myweather.ui.screen.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -29,16 +28,13 @@ class WeatherRecyclerDiffAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("getWeather", "onBindViewHolder")
         val item = getItem(position)
-
         holder.binding.apply {
-            Log.d("getWeather", "holder.binding.apply")
             address.text = "${item.cityName}, ${item.countryName}"
-            updatedAt.text = "Update at: " + SimpleDateFormat("dd/MM/yyyy HH:mm:ss a").format(Date(item.updateDate!!*1000L))
+            updatedAtNumber.text = "" + SimpleDateFormat("dd/MM/yyyy HH:mm:ss a").format(Date(item.updateDate!!*1000L))
             temp.text = "${item.tempreture!!.toInt()} °C"
-            tempMax.text = "Max: ${item.tempretureMax!!.toInt()} °C"
-            tempMin.text = "Min: ${item.tempretureMin!!.toInt()} °C"
+            tempMaxNumber.text = " ${item.tempretureMax!!.toInt()} °C"
+            tempMinNumber.text = " ${item.tempretureMin!!.toInt()} °C"
             sunrise.text =
                 SimpleDateFormat("HH:mm a").format(Date(item.sunrise!!*1000L))
             sunset.text =

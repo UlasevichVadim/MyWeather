@@ -28,7 +28,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/itemWeatherPrecipitationProbability"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutItemPrecipitation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemWeatherTempretureDay"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,49 +47,108 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="24 °C" />
 
-        <TextView
-            android:id="@+id/itemWeatherPrecipitationProbability"
+        <LinearLayout
+            android:id="@+id/linearLayoutItemPrecipitation"
             android:layout_width="@dimen/distance_200dp"
             android:layout_height="@dimen/distance_25dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="1dp"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18sp"
-            app:layout_constraintBottom_toTopOf="@+id/itemWeatherVisibility"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutItemVisibility"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/itemWeatherTempretureDay"
-            tools:text="Precipitation: 0.64%" />
+            app:layout_constraintStart_toEndOf="@+id/itemWeatherTempretureDay">
 
-        <TextView
-            android:id="@+id/itemWeatherVisibility"
+            <TextView
+                android:id="@+id/itemWeatherPrecipitationProbability"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/item_search_screen_precipitation"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp" />
+
+            <Space
+                android:layout_width="@dimen/distance_10dp"
+                android:layout_height="@dimen/distance_10dp" />
+
+            <TextView
+                android:id="@+id/itemWeatherPrecipitationProbabilityNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp"
+                tools:text="80 %" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutItemVisibility"
             android:layout_width="@dimen/distance_200dp"
             android:layout_height="@dimen/distance_25dp"
             android:layout_marginEnd="2dp"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18sp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemWeatherTempretureDay"
-            app:layout_constraintTop_toBottomOf="@+id/itemWeatherPrecipitationProbability"
-            tools:text="Visibility: 10 km" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutItemPrecipitation">
 
-        <TextView
-            android:id="@+id/itemWeatherCloudy"
+            <TextView
+                android:id="@+id/itemWeatherVisibility"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:gravity="center"
+                android:text="@string/item_search_screen_visibility"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp" />
+
+            <Space
+                android:layout_width="@dimen/distance_10dp"
+                android:layout_height="@dimen/distance_10dp" />
+
+            <TextView
+                android:id="@+id/itemWeatherVisibilityNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp"
+                tools:text="80 m" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutItemCloudy"
             android:layout_width="@dimen/distance_200dp"
             android:layout_height="@dimen/distance_25dp"
-            android:layout_marginTop="1dp"
             android:layout_marginEnd="2dp"
-            android:layout_marginBottom="1dp"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18sp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemWeatherTempretureDay"
-            app:layout_constraintTop_toBottomOf="@+id/itemWeatherVisibility"
-            tools:text="Cloudy: 0.50%" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutItemVisibility">
 
+            <TextView
+                android:id="@+id/itemWeatherCloudy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:gravity="center"
+                android:text="@string/item_search_screen_cloudy"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp" />
+
+            <Space
+                android:layout_width="@dimen/distance_10dp"
+                android:layout_height="@dimen/distance_10dp" />
+
+            <TextView
+                android:id="@+id/itemWeatherCloudyNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp"
+                tools:text="80 %" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

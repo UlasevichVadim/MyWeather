@@ -21,7 +21,6 @@ object PermissionChecker {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED
 
-
     fun askAccessFineLocationPermission(activity: AppCompatActivity, requestId: Int) {
         ActivityCompat.requestPermissions(
             activity,

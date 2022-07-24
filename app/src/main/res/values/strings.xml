@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">My Weather</string>
+
+    <string name="item_main_screen_updated_at">Updated at:</string>
+    <string name="item_main_screen_min">Min:</string>
+    <string name="item_main_screen_max">Max:</string>
+    <string name="item_main_screen_sunrise">Sunrise</string>
+    <string name="item_main_screen_sunset">Sunset</string>
+    <string name="item_main_screen_wind">Wind</string>
+    <string name="item_main_screen_pressure">Pressure</string>
+    <string name="item_main_screen_humidity">Humidity</string>
+    <string name="item_main_screen_clouds">Clouds</string>
+
+    <string name="text_input_line_hint_search_screen">Please enter name city</string>
+    <string name="text_button_search_screen">Search</string>
+    <string name="item_search_screen_precipitation">Precipitation:</string>
+    <string name="item_search_screen_visibility">Visibility:</string>
+    <string name="item_search_screen_cloudy">Cloudy:</string>
+
+    <string name="text_api_runs_screen_about_app">The app runs on the api openWeather</string>
+    <string name="text_version_app_about_app_screen">Application version</string>
+
+    <string name="language_header_preferences">Language Application</string>
+
+    <string name="language_choose_setting_preferences">Language</string>
+    <string name="type_language_english_fahrenheit_setting">English</string>
+    <string name="type_language_russian_celsius_setting">Russian</string>
+    <string name="description_language">Selecting the application language</string>
+    <string name="choose_language">Choose a language</string>
+</resources>
