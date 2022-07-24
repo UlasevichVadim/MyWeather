@@ -8,7 +8,7 @@
 
 <img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1.1.png" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1.2.png" width="300" hspace="40">
 
-<img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1%2C3.png" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1%2C4.png" width="300" hspace="40">
+<img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1,3.png" width="300" hspace="40"><img src="https://github.com/UlasevichVadim/MyWeather/blob/main/Screenshot/Screenshot_1,4.png" width="300" hspace="40">
 
 
 

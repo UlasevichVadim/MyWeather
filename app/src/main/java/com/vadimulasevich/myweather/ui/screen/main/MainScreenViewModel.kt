@@ -28,8 +28,8 @@ class MainScreenViewModel(
         _localWeatherList.value = ResultState.Loading()
 //        val lon = locationRepository.getLocation().longitude
 //        val lat = locationRepository.getLocation().latitude
-        val lon = 0.00
-        val lat = 0.00
+        val lon = 27.54677
+        val lat = 53.90556
 
         weatherNetworkRepository.getWeather(
             lat,
